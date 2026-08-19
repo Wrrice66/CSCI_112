@@ -6,5 +6,20 @@ namespace starwars {
         int Health;
         int lightsaberSkill;
         int forcePower;
+        void setDefaultStats();
+        int Attack();
+        void useForce(int power);
+        void takeDamage(int damage);
+    };
+
+    class Sith {
+        std::string sithName;
+        int Health;
+        int lightsaberSkill;
+        int forcePower;
+        void setDefaultStats();
+        int Attack();
+        void useForce(int power);
+        void takeDamage(int damage);
     };
 }
