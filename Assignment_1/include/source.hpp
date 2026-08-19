@@ -1,0 +1,6 @@
+
+namespace starwars {
+    class Jedi {
+
+    };
+}
