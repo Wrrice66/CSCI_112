@@ -36,7 +36,7 @@ Structure of file should consist of 10 lines of 0 or 1 to indicate cell state
 */
 void readBoard(Cell* board[][10], int boardSize) 
 {
-
+    ifstream fin;
 }
 
 /*
@@ -44,7 +44,14 @@ Function to print out all cells to cout
 */
 void printCells(Cell* board[][10], int boardSize)
 {
-
+    for (int i = 0; i < boardSize; i++)
+    {
+        for (int k = 0; k < 10; k++)
+        {
+            std::cout << board[k][i];
+        }
+        std::cout << std::endl;
+    }
 }
 
 /*
