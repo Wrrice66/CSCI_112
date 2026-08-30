@@ -76,5 +76,37 @@ Return if you updated cells or not to break out of while loop from main.
 */
 bool updateCellState(Cell* board[][10], int boardSize) 
 {
-    return false;
+    bool cellChanged = false;
+    for (int i = 0; i < boardSize; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            if (board[i][j]->state == 1)
+            {
+                if (board[i][j]->numLiveNeighbors < 2)
+                {
+                    board[i][j]->state = 0;
+                    cellChanged = true;
+                }
+                else if (board[i][j]->numLiveNeighbors == 2||3)
+                    continue;
+                else if (board[i][j]->numLiveNeighbors > 3)
+                {
+                    board[i][j]->state = 0;
+                    cellChanged = true;
+                }
+            }
+            else
+            {
+                if (board[i][j]->numLiveNeighbors == 3)
+                {
+                    board[i][j]->state = 1;
+                    cellChanged = true;
+                }
+                else
+                    continue;
+            }
+        }
+    }
+    return cellChanged;
 }
