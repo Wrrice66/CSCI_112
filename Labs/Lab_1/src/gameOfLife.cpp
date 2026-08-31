@@ -28,6 +28,7 @@ void initCells(Cell* board[][10], int boardSize)
             board[i][e]->x = i;
             board[i][e]->y = e;
             board[i][e]->state = 0;
+            board[i][e]->numLiveNeighbors = 0;
         }
     }
 }
@@ -47,13 +48,15 @@ void readBoard(Cell* board[][10], int boardSize)
         std::cout << "Enter name of savefile: " << std::endl;
         std::cin >> saveName;
         fin.open(saveName);
+        if (!fin.is_open())
+            std::cout << "File not found. Try again." << std::endl;
     }
     for (int x = 0; x < boardSize; x++)
     {
         fin.getline(currentLine, 10);
         for (int y = 0; y < 10; y++)
         {
-            board[x][y]->state = currentLine[y];
+            board[x][y]->state = (currentLine[y] - '0');
         }
     }
     fin.close();
@@ -80,7 +83,7 @@ Must use the x, y position stored with each cell to determine which neighbors th
 */
 void findNumNeighbors(Cell* board[][10], int boardSize, Cell* curCell) 
 {
-
+    
 }
 
 /*
