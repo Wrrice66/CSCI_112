@@ -24,7 +24,10 @@ void initCells(Cell* board[][10], int boardSize)
     {
         for (int e = 0; e < 10; e++)
         {
-            board[i][e] = 0;
+            board[i][e] = new Cell;
+            board[i][e]->x = i;
+            board[i][e]->y = e;
+            board[i][e]->state = 0;
         }
     }
 }
@@ -37,6 +40,23 @@ Structure of file should consist of 10 lines of 0 or 1 to indicate cell state
 void readBoard(Cell* board[][10], int boardSize) 
 {
     ifstream fin;
+    string saveName;
+    char currentLine[10];
+    while(!fin.is_open())
+    {
+        std::cout << "Enter name of savefile: " << std::endl;
+        std::cin >> saveName;
+        fin.open(saveName);
+    }
+    for (int x = 0; x < boardSize; x++)
+    {
+        fin.getline(currentLine, 10);
+        for (int y = 0; y < 10; y++)
+        {
+            board[x][y]->state = currentLine[y];
+        }
+    }
+    fin.close();
 }
 
 /*
@@ -48,7 +68,7 @@ void printCells(Cell* board[][10], int boardSize)
     {
         for (int k = 0; k < 10; k++)
         {
-            std::cout << board[k][i];
+            std::cout << board[k][i]->state;
         }
         std::cout << std::endl;
     }
