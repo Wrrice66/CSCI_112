@@ -83,7 +83,65 @@ Must use the x, y position stored with each cell to determine which neighbors th
 */
 void findNumNeighbors(Cell* board[][10], int boardSize, Cell* curCell) 
 {
-    
+    for (int y = 0; y < boardSize; y++)
+    {
+        for (int x = 0; x < 10; x++)
+        {
+            curCell = board[x][y];
+            if (x > 0 && y > 0)
+            {
+                for (int i = -1; i < 2; i++)
+                {
+                    for (int j = -1; j < 2; j++)
+                    {
+                        if (curCell != board[x-i][y-j])
+                            curCell->numLiveNeighbors += board[x-i][y-j]->state;
+                        else
+                            continue;
+                    }
+                }
+            }
+            else if (x > 0 && y == 0)
+            {
+                for (int i = -1; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (curCell != board[x-i][y-j])
+                            curCell->numLiveNeighbors += board[x-i][y-j]->state;
+                        else
+                            continue;
+                    }
+                }
+            }
+            else if (x == 0 && y > 0)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = -1; j < 2; j++)
+                    {
+                        if (curCell != board[x-i][y-j])
+                            curCell->numLiveNeighbors += board[x-i][y-j]->state;
+                        else
+                            continue;
+                    }
+                }
+            }
+            else 
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (curCell != board[x-i][y-j])
+                            curCell->numLiveNeighbors += board[x-i][y-j]->state;
+                        else
+                            continue;
+                    }
+                }
+            }
+        }
+    }
 }
 
 /*
