@@ -27,8 +27,7 @@ void initCells(Cell* board[][10], int boardSize)
             board[i][e] = new Cell;
             board[i][e]->x = i;
             board[i][e]->y = e;
-            board[i][e]->state = 0;
-            board[i][e]->numLiveNeighbors = 0;
+            // board[i][e]->state = 0;
         }
     }
 }
