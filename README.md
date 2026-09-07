@@ -11,8 +11,10 @@
 
 | Name                | Value                                          |
 | :------------------ | :--------------------------------------------- |
-| **Assignment 1**    |                                                |
-| **Goal**            |                                                |
+| **Assignment 1**    | Star Wars                                      |
+| **Goal**            | Create a text-based Star Wars game with classes|
+| **Status**          | In Progress                                    |
+| **Grade**           | ?/100                                          |
 
 ## Labs
 
@@ -20,12 +22,12 @@
 | :------------------ | :--------------------------------------------- |
 | **Lab 1**           | Game of Life                                   |
 | **Goal**            | CLI based Game of Life program                 |
-| **Status**          | In Progress                                    |
+| **Status**          | Complete, technically                          |
 | **Grade**           | ?/100                                          |
 
 | Name                | Value                                          |
 | :------------------ | :--------------------------------------------- |
 | **Lab 2**           | Point Distance                                 |
 | **Goal**            | Program to find distance between two points    |
-| **Status**          | In Progress                                    |
+| **Status**          | Complete                                       |
 | **Grade**           | ?/100                                          |
