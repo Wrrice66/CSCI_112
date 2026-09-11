@@ -19,6 +19,7 @@ namespace starwars {
             void useForce(int power);
             void takeDamage(int damage);
             int getHealth();
+            void displayStats();
     };
 
     class Sith {

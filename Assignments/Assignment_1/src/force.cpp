@@ -49,6 +49,11 @@ int starwars::Jedi::getHealth()
     return this->Health;
 }
 
+void starwars::Jedi::displayStats()
+{
+    std::cout << "Health: " << this->Health << "  Force Power: " << this->forcePower << std::endl;
+}
+
 void starwars::Sith::setDefaultStats()
 {
     this->sithName = "Darth *unintelligible nonsense*";
