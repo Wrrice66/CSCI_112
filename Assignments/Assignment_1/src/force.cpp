@@ -1,6 +1,9 @@
 #include "../include/force.hpp"
+#include <cstddef>
 #include <cstdio>
 #include <format>
+#include <fstream>
+#include <string>
 
 void clearScreen()
 {
@@ -15,9 +18,15 @@ void clearScreen()
 void starwars::Jedi::setDefaultStats(std::string name)
 {
     this->jediName = name;
-    this->Health = 100;
-    this->lightsaberSkill = 50;
-    this->forcePower = 75;
+    std::fstream fin;
+    fin.open("../characterData/jediStats.txt");
+    std::string helth, skil, powr;
+    std::getline(fin, helth);
+    std::getline(fin, skil);
+    std::getline(fin, powr);
+    this->Health = std::stoi(helth);
+    this->lightsaberSkill = std::stoi(skil);
+    this->forcePower = std::stoi(powr);
 }
 
 int starwars::Jedi::Attack()
@@ -35,12 +44,23 @@ void starwars::Jedi::takeDamage(int incoming)
     this->Health -= incoming;
 }
 
+int starwars::Jedi::getHealth()
+{
+    return this->Health;
+}
+
 void starwars::Sith::setDefaultStats()
 {
     this->sithName = "Darth *unintelligible nonsense*";
-    this->Health = 120;
-    this->lightsaberSkill = 60;
-    this->forcePower = 75;
+    std::fstream fin;
+    fin.open("../characterData/sithStats.txt");
+    std::string helth, skil, powr;
+    std::getline(fin, helth);
+    std::getline(fin, skil);
+    std::getline(fin, powr);
+    this->Health = std::stoi(helth);
+    this->lightsaberSkill = std::stoi(skil);
+    this->forcePower = std::stoi(powr);
 }
 
 int starwars::Sith::Attack()
@@ -74,4 +94,5 @@ void starwars::Game::displayCurrState()
         fin.getline(line, 1000000);
         std::cout << line << std::endl;
     }
+    
 }
