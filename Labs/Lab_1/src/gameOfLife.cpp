@@ -82,21 +82,15 @@ Must use the x, y position stored with each cell to determine which neighbors th
 */
 void findNumNeighbors(Cell* board[][10], int boardSize, Cell* curCell) 
 {
-    if (curCell->x > 0 && curCell->y > 0)
+    int mainX = curCell->x;
+    int mainY = curCell->y;
+    int neighX, neighY;
+    for (int i = -1; i < 2; i++)
     {
+        for (int j = -1; j < 2; j++)
+        {
 
-    }
-    else if (curCell->x > 0 && curCell->y == 0)
-    {
-
-    }
-    else if (curCell->x == 0 && curCell->y > 0)
-    {
-
-    }
-    else
-    {
-
+        }
     }
 }
 
