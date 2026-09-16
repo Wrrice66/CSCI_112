@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include "../include/force.hpp"
 
 int main(int argc, char* argv[])
