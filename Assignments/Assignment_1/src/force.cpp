@@ -34,7 +34,7 @@ int starwars::Jedi::Attack()
     return this->lightsaberSkill;
 }
 
-void starwars::Jedi::useForce(int power) // Potentially a kind of power that lasts forever and is ongoing?
+void starwars::Jedi::useForce(int power)
 {
     this->forcePower -= power;
 }
@@ -73,7 +73,7 @@ int starwars::Sith::Attack()
     return this->lightsaberSkill;
 }
 
-void starwars::Sith::useForce(int power)
+void starwars::Sith::useForce(int power) // Potentially a kind of power that lasts forever and is ongoing?
 {
     this->forcePower -= power;
 }
@@ -83,9 +83,14 @@ void starwars::Sith::takeDamage(int incoming)
     this->Health -= incoming;
 }
 
-void starwars::Game::nextState(int playerChoice)
+void starwars::Game::nextState(int playerChoice, Sith enemy, Jedi player)
 {
-    this->state = playerChoice;
+    switch (playerChoice)
+    {
+        case 1:
+            enemy.takeDamage(player.Attack());
+            
+    }
 }
 
 void starwars::Game::displayCurrState()

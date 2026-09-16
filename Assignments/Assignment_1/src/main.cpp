@@ -11,15 +11,17 @@ int main(int argc, char* argv[])
 
     std::cout << "Welcome to the game." << std::endl;
     std::cout << "Enter the name of your Jedi: ";
-    std::getline(std::cin, inputName);
+    std::cin >> inputName;
     starwars::Jedi Player;
     Player.setDefaultStats(inputName);
 
     while (Player.getHealth() != 0)
     {
         mainGame.displayCurrState();
-        std::getline(std::cin, playerChoice);
-        mainGame.nextState(std::stoi(playerChoice));
+        Player.displayStats();
+        mainGame.displayChoices();
+        std::cin >> playerChoice;
+        mainGame.nextState(std::stoi(playerChoice), Enemy, Player);
     }
     return 0;
 }

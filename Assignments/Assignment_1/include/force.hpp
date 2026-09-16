@@ -38,10 +38,11 @@ namespace starwars {
     class Game {
         private:
             int state;
-            std::string event0, event1, event2, event3, event4, event5, event6, event7;
+            std::string event0, event1, event2, event3, event4, event5;
         public:
-            void nextState(int);
+            void nextState(int, Sith, Jedi);
             void displayCurrState();
+            void displayChoices();
             Game(int = 0);
             ~Game();
     };
