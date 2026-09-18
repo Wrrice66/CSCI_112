@@ -89,7 +89,14 @@ void findNumNeighbors(Cell* board[][10], int boardSize, Cell* curCell)
     {
         for (int j = -1; j < 2; j++)
         {
-
+            neighX = mainX + i;
+            neighY = mainY + j;
+            if (neighX < 0 || neighY < 0 || neighX > 10 || neighY > boardSize)
+                continue;
+            else if (board[neighX][neighY]->state == 1)
+                curCell->numLiveNeighbors ++;
+            else
+                continue;
         }
     }
 }

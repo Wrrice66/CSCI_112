@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "../include/gameOfLife.hpp"
 
 using namespace std;
