@@ -13,13 +13,19 @@ int main(int argc, char* argv[])
     starwars::Jedi Player;
     Player.setDefaultStats(inputName);
 
-    while (Player.getHealth() != 0)
+    while (!mainGame.checkWinLose())
     {
         mainGame.displayCurrState();
         Player.displayStats();
         mainGame.displayChoices();
         std::cin >> playerChoice;
         mainGame.nextState(std::stoi(playerChoice), Enemy, Player);
+        if (Player.getHealth() == 0)
+            mainGame.Lose();
+        else if (Enemy.getHealth() == 0)
+            mainGame.Win();
+        else
+            continue;
     }
     return 0;
 }
