@@ -22,10 +22,8 @@ int main(int argc, char* argv[])
         mainGame.nextState(std::stoi(playerChoice), Enemy, Player);
         if (Player.getHealth() == 0)
             mainGame.Lose();
-        else if (Enemy.getHealth() == 0)
-            mainGame.Win();
         else
-            continue;
+            mainGame.enemyTurn();
     }
     return 0;
 }

@@ -52,6 +52,7 @@ namespace starwars {
             bool checkWinLose();
             void Win();
             void Lose();
+            void enemyTurn();
             Game(int = 0);
             ~Game();
     };

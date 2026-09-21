@@ -127,6 +127,8 @@ void starwars::Game::nextState(int playerChoice, Sith enemy, Jedi player)
         this->state = 3;
     else if (enemy.getHealth() > 0)
         this->state = 4;
+    else
+        this->Win();
 }
 
 void starwars::Game::displayCurrState()
@@ -140,4 +142,9 @@ void starwars::Game::displayCurrState()
         fin.getline(line, 1000000);
         std::cout << line << std::endl;
     }
+}
+
+void starwars::Game::enemyTurn()
+{
+    
 }
