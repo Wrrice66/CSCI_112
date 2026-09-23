@@ -35,6 +35,8 @@ namespace starwars {
         public:
             void setDefaultStats();
             int Attack();
+            void Block();
+            void unBlock();
             void useForce(int power);
             void takeDamage(int damage);
             int getHealth();
@@ -52,7 +54,7 @@ namespace starwars {
             bool checkWinLose();
             void Win();
             void Lose();
-            void enemyTurn();
+            void enemyTurn(Jedi, Sith);
             Game(int = 0);
             ~Game();
     };

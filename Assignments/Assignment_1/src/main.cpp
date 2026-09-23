@@ -23,7 +23,10 @@ int main(int argc, char* argv[])
         if (Player.getHealth() == 0)
             mainGame.Lose();
         else
-            mainGame.enemyTurn();
+        {
+            Enemy.unBlock();
+            mainGame.enemyTurn(Player, Enemy);
+        }
     }
     return 0;
 }

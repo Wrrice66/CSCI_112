@@ -89,6 +89,18 @@ int starwars::Sith::Attack()
     return this->lightsaberSkill;
 }
 
+void starwars::Sith::Block()
+{
+    this->defense += 20;
+    this->lightsaberSkill -= 25;
+}
+
+void starwars::Sith::unBlock()
+{
+    this->defense -= 20;
+    this->lightsaberSkill += 25;
+}
+
 void starwars::Sith::useForce(int power) // Potentially a kind of power that lasts forever and is ongoing?
 {
     this->forcePower -= power;
@@ -144,7 +156,17 @@ void starwars::Game::displayCurrState()
     }
 }
 
-void starwars::Game::enemyTurn()
+void starwars::Game::enemyTurn(starwars::Jedi player, starwars::Sith enemy)
 {
-    
+    if (player.getHealth() >= 70)
+    {
+        enemy.useForce(30);
+        player.takeDamage(30);
+    }
+    else if (player.getHealth() >= 40 || enemy.getHealth() <= 80)
+    {
+        player.takeDamage(enemy.Attack());
+    }
+    else
+        enemy.Block();
 }
