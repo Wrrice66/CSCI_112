@@ -134,7 +134,10 @@ void starwars::Game::nextState(int playerChoice, Sith enemy, Jedi player)
     if (enemy.getHealth() >= 80)
         this->state = 1;
     else if (enemy.getHealth() >= 60)
+    {
         this->state = 2;
+        enemy.useForce(25); // To reflect the lowered force ability
+    }
     else if (enemy.getHealth() >= 40)
         this->state = 3;
     else if (enemy.getHealth() > 0)
@@ -154,6 +157,7 @@ void starwars::Game::displayCurrState()
         fin.getline(line, 1000000);
         std::cout << line << std::endl;
     }
+    fin.close();
 }
 
 void starwars::Game::enemyTurn(starwars::Jedi player, starwars::Sith enemy)
@@ -169,4 +173,12 @@ void starwars::Game::enemyTurn(starwars::Jedi player, starwars::Sith enemy)
     }
     else
         enemy.Block();
+}
+
+void starwars::Game::displayChoices()
+{
+    std::cout << "1. Strike with your weapon" << std::endl;
+    std::cout << "2. Channel the light side of the Force" << std::endl;
+    std::cout << "3. Assume a defensive stance" << std::endl;
+    std::cout << "4. Return to offensive combat" << std::endl;
 }
