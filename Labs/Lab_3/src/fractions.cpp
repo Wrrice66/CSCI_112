@@ -2,6 +2,11 @@
 
 fractions::Fraction::Fraction(int numerator, int denominator)
 {
+    if (denominator != 0)
+    {
+        _numerator = numerator;
+        _denominator = denominator;
+    }
 }
 
 fractions::Fraction fractions::Fraction::operator+(fractions::Fraction const &frac)
