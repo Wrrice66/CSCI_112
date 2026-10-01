@@ -12,21 +12,27 @@ int main(int argc, char* argv[])
     std::cin >> inputName;
     starwars::Jedi Player;
     Player.setDefaultStats(inputName);
+    Enemy.setDefaultStats();
 
-    while (!mainGame.checkWinLose())
+    while (Player.getHealth() != 0 && Enemy.getHealth() != 0)
     {
         mainGame.displayCurrState();
         Player.displayStats();
         mainGame.displayChoices();
         std::cin >> playerChoice;
-        mainGame.nextState(std::stoi(playerChoice), Enemy, Player);
-        if (Player.getHealth() == 0)
-            mainGame.Lose();
-        else
-        {
-            Enemy.unBlock();
-            mainGame.enemyTurn(Player, Enemy);
-        }
+        mainGame.nextState(std::stoi(playerChoice), Player, Enemy);
+        Enemy.unBlock();
+        mainGame.enemyTurn(Player, Enemy);
+    }
+    if (mainGame.checkWinLose(Player, Enemy))
+    {
+        mainGame.Win();
+        mainGame.displayCurrState();
+    }
+    else
+    {
+        mainGame.Lose();
+        mainGame.displayCurrState();
     }
     return 0;
 }

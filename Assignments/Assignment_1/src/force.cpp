@@ -116,7 +116,7 @@ int starwars::Sith::getHealth()
     return this->Health;
 }
 
-void starwars::Game::nextState(int playerChoice, Sith enemy, Jedi player)
+void starwars::Game::nextState(int playerChoice, Jedi player, Sith enemy)
 {
     switch (playerChoice)
     {
@@ -181,4 +181,22 @@ void starwars::Game::displayChoices()
     std::cout << "2. Channel the light side of the Force" << std::endl;
     std::cout << "3. Assume a defensive stance" << std::endl;
     std::cout << "4. Return to offensive combat" << std::endl;
+}
+
+void starwars::Game::Win()
+{
+    this->state = 5;
+}
+
+void starwars::Game::Lose()
+{
+    this->state = 6;
+}
+
+bool starwars::Game::checkWinLose(starwars::Jedi Player, starwars::Sith Enemy)
+{
+    if (Player.getHealth() == 0)
+        return false;
+    else
+        return true;
 }
