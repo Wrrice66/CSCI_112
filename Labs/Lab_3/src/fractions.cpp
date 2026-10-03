@@ -67,7 +67,11 @@ fractions::Fraction fractions::Fraction::operator/(Fraction const &frac)
 
 fractions::Fraction fractions::Fraction::simplify(Fraction frac)
 {
-    return Fraction(0, 1);
+    Fraction simp;
+    int gratComDen = gcd(frac._numerator, frac._denominator);
+    simp._numerator = (frac._numerator / gratComDen);
+    simp._denominator = (frac._denominator / gratComDen);
+    return simp;
 }
 
 void fractions::Fraction::simplify()
@@ -96,10 +100,16 @@ int fractions::Fraction::gcd(int a, int b)
 
 bool fractions::Fraction::operator==(Fraction const &frac)
 {
-    return false;
+    this->simplify();
+    Fraction simpFrac = simplify(frac);
+    if (this->_numerator == simpFrac._numerator && this->_denominator == simpFrac._denominator)
+        return true;
+    else
+        return false;
 }
 
 ostream &fractions::operator<<(ostream &os, const Fraction &frac)
 {
+    cout << frac._numerator << "/" << frac._denominator;
     return os;
 }
