@@ -44,7 +44,7 @@ namespace starwars {
 
     class Game {
         private:
-            int state;
+            int _state;
             std::string event0, event1, event2, event3, event4, event5;
             bool endCondition;
         public:

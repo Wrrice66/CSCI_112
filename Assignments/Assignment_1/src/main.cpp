@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[])
 {
-    starwars::Game mainGame;
+    starwars::Game mainGame(0);
     starwars::Sith Enemy;
     std::string inputName;
     std::string playerChoice;

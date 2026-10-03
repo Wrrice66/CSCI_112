@@ -116,6 +116,14 @@ int starwars::Sith::getHealth()
     return this->Health;
 }
 
+starwars::Game::Game(int state)
+{
+    this->_state = state;
+}
+
+starwars::Game::~Game()
+{}
+
 void starwars::Game::nextState(int playerChoice, Jedi player, Sith enemy)
 {
     switch (playerChoice)
@@ -132,16 +140,16 @@ void starwars::Game::nextState(int playerChoice, Jedi player, Sith enemy)
     }
 
     if (enemy.getHealth() >= 80)
-        this->state = 1;
+        this->_state = 1;
     else if (enemy.getHealth() >= 60)
     {
-        this->state = 2;
+        this->_state = 2;
         enemy.useForce(25); // To reflect the lowered force ability
     }
     else if (enemy.getHealth() >= 40)
-        this->state = 3;
+        this->_state = 3;
     else if (enemy.getHealth() > 0)
-        this->state = 4;
+        this->_state = 4;
     else
         this->Win();
 }
@@ -149,7 +157,7 @@ void starwars::Game::nextState(int playerChoice, Jedi player, Sith enemy)
 void starwars::Game::displayCurrState()
 {
     std::fstream fin;
-    std::string currEvent = "../eventData/event" + std::to_string(this->state) + ".txt";
+    std::string currEvent = "../eventData/event" + std::to_string(this->_state) + ".txt";
     fin.open(currEvent);
     char line[1000];
     while(!EOF)
@@ -185,12 +193,12 @@ void starwars::Game::displayChoices()
 
 void starwars::Game::Win()
 {
-    this->state = 5;
+    this->_state = 5;
 }
 
 void starwars::Game::Lose()
 {
-    this->state = 6;
+    this->_state = 6;
 }
 
 bool starwars::Game::checkWinLose(starwars::Jedi Player, starwars::Sith Enemy)
