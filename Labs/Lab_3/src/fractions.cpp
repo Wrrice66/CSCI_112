@@ -2,15 +2,15 @@
 
 fractions::Fraction::Fraction(int numerator, int denominator)
 {
-    _numerator = numerator;
-    if (denominator != 0)
-    {
-        _denominator = denominator;
-    }
+    cout << "Enter numerator: ";
+    cin >> numerator;
+    cout << "Enter denominator: ";
+    cin >> denominator;
+    this->_numerator = numerator;
+    if (denominator == 0)
+        this->_denominator = 1;
     else
-    {
-        _denominator = 1;
-    }
+        this->_denominator = denominator;
 }
 
 fractions::Fraction fractions::Fraction::operator+(fractions::Fraction const &frac)
