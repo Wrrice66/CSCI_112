@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
 
     while (Player.getHealth() != 0 && Enemy.getHealth() != 0)
     {
+        clearScreen();
         mainGame.displayCurrState();
         Player.displayStats();
         mainGame.displayChoices();
@@ -27,11 +28,13 @@ int main(int argc, char* argv[])
     if (mainGame.checkWinLose(Player, Enemy))
     {
         mainGame.Win();
+        clearScreen();
         mainGame.displayCurrState();
     }
     else
     {
         mainGame.Lose();
+        clearScreen();
         mainGame.displayCurrState();
     }
     return 0;
