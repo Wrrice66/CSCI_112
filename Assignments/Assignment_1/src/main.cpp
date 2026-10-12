@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
     std::string inputName;
     std::string playerChoice;
 
-    clearScreen();
+    // clearScreen();
     std::cout << "Welcome to the game." << std::endl;
     std::cout << "Enter the name of your Jedi: ";
     std::cin >> inputName;
@@ -15,9 +15,12 @@ int main(int argc, char* argv[])
     Player.setDefaultStats(inputName);
     Enemy.setDefaultStats();
 
+    std::cout << "DEBUG: Player health: " << Player.getHealth() << std::endl;
+    std::cout << "DEBUG: Enemy health: " << Enemy.getHealth() << std::endl;
+
     while (Player.getHealth() != 0 && Enemy.getHealth() != 0)
     {
-        clearScreen();
+        // clearScreen();
         mainGame.displayCurrState();
         Player.displayStats();
         mainGame.displayChoices();
@@ -29,13 +32,13 @@ int main(int argc, char* argv[])
     if (mainGame.checkWinLose(Player, Enemy))
     {
         mainGame.Win();
-        clearScreen();
+        // clearScreen();
         mainGame.displayCurrState();
     }
     else
     {
         mainGame.Lose();
-        clearScreen();
+        // clearScreen();
         mainGame.displayCurrState();
     }
     return 0;
