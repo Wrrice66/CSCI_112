@@ -7,6 +7,7 @@ int main(int argc, char* argv[])
     std::string inputName;
     std::string playerChoice;
 
+    clearScreen();
     std::cout << "Welcome to the game." << std::endl;
     std::cout << "Enter the name of your Jedi: ";
     std::cin >> inputName;
