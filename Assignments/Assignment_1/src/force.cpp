@@ -4,6 +4,7 @@
 #include <format>
 #include <fstream>
 #include <string>
+#include <charconv>
 
 void clearScreen()
 {
@@ -25,10 +26,20 @@ void starwars::Jedi::setDefaultStats(std::string name)
     std::getline(fin, skil);
     std::getline(fin, powr);
     std::getline(fin, def);
+    // This is a technique I found online, from the main c++ reference site and Stack Exchange, as to be expected
+    auto [ptr1, ec1] = std::from_chars(helth.data(), helth.data() + helth.size(), this->Health);
+    auto [ptr2, ec2] = std::from_chars(skil.data(), skil.data() + skil.size(), this->lightsaberSkill);
+    auto [ptr3, ec3] = std::from_chars(powr.data(), powr.data() + powr.size(), this->forcePower);
+    auto [ptr4, ec4] = std::from_chars(def.data(), def.data() + def.size(), this->defense);
+
+    /* 
+    Old Code
+
     this->Health = std::stoi(helth);
     this->lightsaberSkill = std::stoi(skil);
     this->forcePower = std::stoi(powr);
     this->defense = std::stoi(def);
+    */
 }
 
 int starwars::Jedi::Attack()
@@ -78,10 +89,18 @@ void starwars::Sith::setDefaultStats()
     std::getline(fin, skil);
     std::getline(fin, powr);
     std::getline(fin, def);
+
+    auto [ptr1, ec1] = std::from_chars(helth.data(), helth.data() + helth.size(), this->Health);
+    auto [ptr2, ec2] = std::from_chars(skil.data(), skil.data() + skil.size(), this->lightsaberSkill);
+    auto [ptr3, ec3] = std::from_chars(powr.data(), powr.data() + powr.size(), this->forcePower);
+    auto [ptr4, ec4] = std::from_chars(def.data(), def.data() + def.size(), this->defense);
+
+    /*
     this->Health = std::stoi(helth);
     this->lightsaberSkill = std::stoi(skil);
     this->forcePower = std::stoi(powr);
     this->defense = std::stoi(def);
+    */
 }
 
 int starwars::Sith::Attack()
