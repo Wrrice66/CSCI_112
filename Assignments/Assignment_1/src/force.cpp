@@ -16,6 +16,14 @@ void clearScreen()
     #endif
 }
 
+starwars::Jedi::Jedi(std::string name)
+{
+    this->setDefaultStats(name);
+}
+
+starwars::Jedi::~Jedi()
+{}
+
 void starwars::Jedi::setDefaultStats(std::string name)
 {
     this->jediName = name;
@@ -27,10 +35,10 @@ void starwars::Jedi::setDefaultStats(std::string name)
     std::getline(fin, powr);
     std::getline(fin, def);
     // This is a technique I found online, from the main c++ reference site and Stack Exchange, as to be expected
-    auto [ptr1, ec1] = std::from_chars(helth.data(), helth.data() + helth.size(), this->Health);
-    auto [ptr2, ec2] = std::from_chars(skil.data(), skil.data() + skil.size(), this->lightsaberSkill);
-    auto [ptr3, ec3] = std::from_chars(powr.data(), powr.data() + powr.size(), this->forcePower);
-    auto [ptr4, ec4] = std::from_chars(def.data(), def.data() + def.size(), this->defense);
+    [[maybe_unused]]auto [ptr1, ec1] = std::from_chars(helth.data(), helth.data() + helth.size(), this->Health);
+    [[maybe_unused]]auto [ptr2, ec2] = std::from_chars(skil.data(), skil.data() + skil.size(), this->lightsaberSkill);
+    [[maybe_unused]]auto [ptr3, ec3] = std::from_chars(powr.data(), powr.data() + powr.size(), this->forcePower);
+    [[maybe_unused]]auto [ptr4, ec4] = std::from_chars(def.data(), def.data() + def.size(), this->defense);
 
     /* 
     Old Code
@@ -79,6 +87,14 @@ void starwars::Jedi::displayStats()
     std::cout << "Health: " << this->Health << "  Force Power: " << this->forcePower << " Defense: " << this->defense << std::endl;
 }
 
+starwars::Sith::Sith()
+{
+    this->setDefaultStats();
+}
+
+starwars::Sith::~Sith()
+{}
+
 void starwars::Sith::setDefaultStats()
 {
     this->sithName = "Darth *unintelligible nonsense*";
@@ -90,10 +106,10 @@ void starwars::Sith::setDefaultStats()
     std::getline(fin, powr);
     std::getline(fin, def);
 
-    auto [ptr1, ec1] = std::from_chars(helth.data(), helth.data() + helth.size(), this->Health);
-    auto [ptr2, ec2] = std::from_chars(skil.data(), skil.data() + skil.size(), this->lightsaberSkill);
-    auto [ptr3, ec3] = std::from_chars(powr.data(), powr.data() + powr.size(), this->forcePower);
-    auto [ptr4, ec4] = std::from_chars(def.data(), def.data() + def.size(), this->defense);
+    [[maybe_unused]]auto [ptr1, ec1] = std::from_chars(helth.data(), helth.data() + helth.size(), this->Health);
+    [[maybe_unused]]auto [ptr2, ec2] = std::from_chars(skil.data(), skil.data() + skil.size(), this->lightsaberSkill);
+    [[maybe_unused]]auto [ptr3, ec3] = std::from_chars(powr.data(), powr.data() + powr.size(), this->forcePower);
+    [[maybe_unused]]auto [ptr4, ec4] = std::from_chars(def.data(), def.data() + def.size(), this->defense);
 
     /*
     this->Health = std::stoi(helth);

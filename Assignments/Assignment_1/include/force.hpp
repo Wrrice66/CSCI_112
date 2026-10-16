@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <format>
+#include <limits>
 
 void clearScreen();
 
@@ -23,6 +24,8 @@ namespace starwars {
             void takeDamage(int damage);
             int getHealth();
             void displayStats();
+            Jedi(std::string = "");
+            ~Jedi();
     };
 
     class Sith {
@@ -40,6 +43,8 @@ namespace starwars {
             void useForce(int power);
             void takeDamage(int damage);
             int getHealth();
+            Sith();
+            ~Sith();
     };
 
     class Game {

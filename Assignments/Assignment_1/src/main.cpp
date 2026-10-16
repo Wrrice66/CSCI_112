@@ -11,9 +11,8 @@ int main(int argc, char* argv[])
     std::cout << "Welcome to the game." << std::endl;
     std::cout << "Enter the name of your Jedi: ";
     std::cin >> inputName;
-    starwars::Jedi Player;
-    Player.setDefaultStats(inputName);
-    Enemy.setDefaultStats();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    starwars::Jedi Player(inputName);
 
     std::cout << "DEBUG: Player health: " << Player.getHealth() << std::endl;
     std::cout << "DEBUG: Enemy health: " << Enemy.getHealth() << std::endl;
