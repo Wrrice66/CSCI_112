@@ -6,22 +6,29 @@ fractions::Fraction::Fraction(int numerator, int denominator)
 {
     // cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    cout << "Enter numerator: ";
-    cin >> numerator;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cout << "Enter denominator: ";
-    cin >> denominator;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    this->_numerator = numerator;
-    if (denominator == 0)
-        this->_denominator = 1;
+    if (numerator == 0 && denominator == 1) // Should work because defaults are 0 and 0 in the .h file
+    {
+        return;
+    }
     else
-        this->_denominator = denominator;
+    {
+        cout << "Enter numerator: ";
+        cin >> numerator;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // This bit of code was gotten online, I need to learn to keep track of whitespace
+        cout << "Enter denominator: ";
+        cin >> denominator;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        this->_numerator = numerator;
+        if (denominator == 0)
+            this->_denominator = 1;
+        else
+            this->_denominator = denominator;
+    }
 }
 
 fractions::Fraction fractions::Fraction::operator+(fractions::Fraction const &frac)
 {
-    Fraction sum;
+    Fraction sum(0,1);
     if (this->_denominator != frac._denominator)
     {
         sum._denominator = (this->_denominator * frac._denominator);
@@ -38,7 +45,7 @@ fractions::Fraction fractions::Fraction::operator+(fractions::Fraction const &fr
 
 fractions::Fraction fractions::Fraction::operator-(fractions::Fraction const &frac)
 {
-    Fraction diff;
+    Fraction diff(0,1);
     if (this->_denominator != frac._denominator)
     {
         diff._denominator = (this->_denominator * frac._denominator);
@@ -55,7 +62,7 @@ fractions::Fraction fractions::Fraction::operator-(fractions::Fraction const &fr
 
 fractions::Fraction fractions::Fraction::operator*(Fraction const &frac)
 {
-    Fraction prod;
+    Fraction prod(0,1);
     prod._numerator = (this->_numerator) * (frac._numerator);
     prod._denominator = (this->_denominator) * (frac._denominator);
     prod.simplify();
@@ -64,7 +71,7 @@ fractions::Fraction fractions::Fraction::operator*(Fraction const &frac)
 
 fractions::Fraction fractions::Fraction::operator/(Fraction const &frac)
 {
-    Fraction quot;
+    Fraction quot(0,1);
     quot._numerator = (this->_numerator) * (frac._denominator);
     quot._denominator = (this->_denominator) * (frac._numerator);
     quot.simplify();
@@ -73,7 +80,7 @@ fractions::Fraction fractions::Fraction::operator/(Fraction const &frac)
 
 fractions::Fraction fractions::Fraction::simplify(Fraction frac)
 {
-    Fraction simp;
+    Fraction simp(0,1);
     int gratComDen = gcd(frac._numerator, frac._denominator);
     simp._numerator = (frac._numerator / gratComDen);
     simp._denominator = (frac._denominator / gratComDen);
@@ -89,7 +96,7 @@ void fractions::Fraction::simplify()
 
 int fractions::Fraction::gcd(int a, int b)
 {
-    int i = 1;
+    int i = 2;
     int concern = min(a, b);
     while(i <= concern)
     {
