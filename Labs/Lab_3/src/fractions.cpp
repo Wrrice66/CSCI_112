@@ -1,11 +1,17 @@
 #include "../include/fractions.hpp"
+#include <ios>
+#include <limits>
 
 fractions::Fraction::Fraction(int numerator, int denominator)
 {
+    // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
     cout << "Enter numerator: ";
     cin >> numerator;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Enter denominator: ";
     cin >> denominator;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     this->_numerator = numerator;
     if (denominator == 0)
         this->_denominator = 1;
