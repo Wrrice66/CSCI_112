@@ -31,3 +31,10 @@
 | **Goal**            | Program to find distance between two points    |
 | **Status**          | Complete                                       |
 | **Grade**           | ?/100                                          |
+
+| Name                | Value                                          |
+| :------------------ | :--------------------------------------------- |
+| **Lab 3**           | Fraction Calculator                            |
+| **Goal**            | Program to find sum, difference, etc of two fractions|
+| **Status**          | Incomplete                                     |
+| **Grade**           | ?/100                                          |
