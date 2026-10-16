@@ -14,14 +14,16 @@ namespace starwars {
             std::string name;
             int Health;
             int lightsaberSkill;
+            int forcePower;
+            int Defense;
         public:
             virtual void takeDamage(int damage);
-            Character(std::string = "", int = 100, int = 25);
+            Character(std::string = "", int = 100, int = 50, int = 50, int = 20);
             ~Character();
     };
 
 
-    class Jedi {
+    class Jedi : public Character {
         private:
             std::string jediName;
             int Health;
@@ -34,14 +36,24 @@ namespace starwars {
             void Block();
             void unBlock();
             void useForce(int power);
-            void takeDamage(int damage);
+            // void takeDamage(int damage);
             int getHealth();
             void displayStats();
-            Jedi(std::string = "");
+            Jedi(std::string = "", int = 100, int = 50, int = 75, int = 20);
             ~Jedi();
     };
 
-    class Sith {
+    class Guardian : public Jedi {
+        private:
+        public:
+    };
+
+    class Consular : public Jedi {
+        private:
+        public:
+    };
+
+    class Sith : public Character {
         private:
             std::string sithName;
             int Health;
@@ -54,9 +66,9 @@ namespace starwars {
             void Block();
             void unBlock();
             void useForce(int power);
-            void takeDamage(int damage);
+            // void takeDamage(int damage);
             int getHealth();
-            Sith();
+            Sith(int = 120, int = 60, int = 75, int = 10);
             ~Sith();
     };
 

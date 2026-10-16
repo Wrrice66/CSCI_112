@@ -16,7 +16,7 @@ void clearScreen()
     #endif
 }
 
-starwars::Jedi::Jedi(std::string name)
+starwars::Jedi::Jedi(std::string name, int helth, int skil, int pow, int def)
 {
     this->setDefaultStats(name);
 }
@@ -72,9 +72,9 @@ void starwars::Jedi::useForce(int power)
     this->forcePower -= power;
 }
 
-void starwars::Jedi::takeDamage(int incoming)
+void starwars::Character::takeDamage(int incoming)
 {
-    this->Health -= (incoming - this->defense);
+    this->Health -= (incoming - this->Defense);
 }
 
 int starwars::Jedi::getHealth()
@@ -87,7 +87,7 @@ void starwars::Jedi::displayStats()
     std::cout << "Health: " << this->Health << "  Force Power: " << this->forcePower << " Defense: " << this->defense << std::endl;
 }
 
-starwars::Sith::Sith()
+starwars::Sith::Sith(int helth, int skil, int pow, int def)
 {
     this->setDefaultStats();
 }
@@ -141,10 +141,10 @@ void starwars::Sith::useForce(int power) // Potentially a kind of power that las
     this->forcePower -= power;
 }
 
-void starwars::Sith::takeDamage(int incoming)
-{
-    this->Health -= (incoming - this->defense);
-}
+// void starwars::Sith::takeDamage(int incoming)
+// {
+//     this->Health -= (incoming - this->defense);
+// }
 
 int starwars::Sith::getHealth()
 {
