@@ -1,10 +1,4 @@
 #include "../include/force.hpp"
-#include <cstddef>
-#include <cstdio>
-#include <format>
-#include <fstream>
-#include <string>
-#include <charconv>
 
 void clearScreen()
 {

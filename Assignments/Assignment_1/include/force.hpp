@@ -4,6 +4,9 @@
 #include <fstream>
 #include <format>
 #include <limits>
+#include <cstddef>
+#include <cstdio>
+#include <charconv>
 
 void clearScreen();
 
