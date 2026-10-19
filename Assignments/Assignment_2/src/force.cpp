@@ -153,7 +153,7 @@ starwars::Game::Game(int state)
 starwars::Game::~Game()
 {}
 
-void starwars::Game::nextState(int playerChoice, Jedi player, Sith enemy)
+void starwars::Game::nextState(int playerChoice, Jedi& player, Sith& enemy)
 {
     switch (playerChoice)
     {
@@ -197,7 +197,7 @@ void starwars::Game::displayCurrState()
     fin.close();
 }
 
-void starwars::Game::enemyTurn(starwars::Jedi player, starwars::Sith enemy)
+void starwars::Game::enemyTurn(Jedi& player, Sith& enemy)
 {
     if (player.getHealth() >= 70)
     {
@@ -230,7 +230,7 @@ void starwars::Game::Lose()
     this->_state = 6;
 }
 
-bool starwars::Game::checkWinLose(starwars::Jedi Player, starwars::Sith Enemy)
+bool starwars::Game::checkWinLose(Jedi& Player, Sith& Enemy)
 {
     if (Player.getHealth() == 0)
         return false;

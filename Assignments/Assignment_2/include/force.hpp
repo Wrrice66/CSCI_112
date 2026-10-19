@@ -81,13 +81,13 @@ namespace starwars {
             std::string event0, event1, event2, event3, event4, event5;
             bool endCondition;
         public:
-            void nextState(int, Jedi, Sith);
+            void nextState(int, Jedi&, Sith&);
             void displayCurrState();
             void displayChoices();
-            bool checkWinLose(Jedi, Sith);
+            bool checkWinLose(Jedi&, Sith&);
             void Win();
             void Lose();
-            void enemyTurn(Jedi, Sith);
+            void enemyTurn(Jedi&, Sith&);
             Game(int = 0);
             ~Game();
     };
