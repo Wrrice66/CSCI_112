@@ -21,7 +21,7 @@ namespace starwars {
             int Defense;
         public:
             virtual void takeDamage(int damage);
-            Character(std::string = "", int = 100, int = 50, int = 50, int = 20);
+            Character(int = 100, int = 50, int = 50, int = 20);
             ~Character();
     };
 
@@ -42,7 +42,7 @@ namespace starwars {
             // void takeDamage(int damage);
             int getHealth();
             void displayStats();
-            Jedi(std::string = "", int = 100, int = 50, int = 75, int = 20);
+            Jedi(std::string = "");
             ~Jedi();
     };
 
@@ -71,7 +71,7 @@ namespace starwars {
             void useForce(int power);
             // void takeDamage(int damage);
             int getHealth();
-            Sith(int = 120, int = 60, int = 75, int = 10);
+            Sith();
             ~Sith();
     };
 

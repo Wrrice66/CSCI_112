@@ -10,7 +10,12 @@ void clearScreen()
     #endif
 }
 
-starwars::Jedi::Jedi(std::string name, int helth, int skil, int pow, int def)
+starwars::Character::Character(int helth, int skil, int pow, int def)
+{
+
+}
+
+starwars::Jedi::Jedi(std::string name)
 {
     this->setDefaultStats(name);
 }
@@ -20,7 +25,11 @@ starwars::Jedi::~Jedi()
 
 void starwars::Jedi::setDefaultStats(std::string name)
 {
+    // Take default stats, adjust to fit, depending on specific character type
     this->jediName = name;
+    this->forcePower += 25;
+    
+    /*
     std::fstream fin;
     fin.open("../characterData/jediStats.txt");
     std::string helth, skil, powr, def;
@@ -33,6 +42,7 @@ void starwars::Jedi::setDefaultStats(std::string name)
     [[maybe_unused]]auto [ptr2, ec2] = std::from_chars(skil.data(), skil.data() + skil.size(), this->lightsaberSkill);
     [[maybe_unused]]auto [ptr3, ec3] = std::from_chars(powr.data(), powr.data() + powr.size(), this->forcePower);
     [[maybe_unused]]auto [ptr4, ec4] = std::from_chars(def.data(), def.data() + def.size(), this->defense);
+    */
 
     /* 
     Old Code
@@ -81,7 +91,7 @@ void starwars::Jedi::displayStats()
     std::cout << "Health: " << this->Health << "  Force Power: " << this->forcePower << " Defense: " << this->defense << std::endl;
 }
 
-starwars::Sith::Sith(int helth, int skil, int pow, int def)
+starwars::Sith::Sith()
 {
     this->setDefaultStats();
 }
@@ -91,6 +101,11 @@ starwars::Sith::~Sith()
 
 void starwars::Sith::setDefaultStats()
 {
+    this->lightsaberSkill += 10;
+    this->forcePower += 25;
+    this->defense -= 10;
+
+    /*
     this->sithName = "Darth *unintelligible nonsense*";
     std::fstream fin;
     fin.open("../characterData/sithStats.txt");
@@ -104,6 +119,7 @@ void starwars::Sith::setDefaultStats()
     [[maybe_unused]]auto [ptr2, ec2] = std::from_chars(skil.data(), skil.data() + skil.size(), this->lightsaberSkill);
     [[maybe_unused]]auto [ptr3, ec3] = std::from_chars(powr.data(), powr.data() + powr.size(), this->forcePower);
     [[maybe_unused]]auto [ptr4, ec4] = std::from_chars(def.data(), def.data() + def.size(), this->defense);
+    */
 
     /*
     this->Health = std::stoi(helth);
