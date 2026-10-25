@@ -18,17 +18,6 @@ starwars::Character::Character(int helth, int skil, int pow, int def)
     this->Defense = def;
 }
 
-starwars::Character::~Character()
-{}
-
-starwars::Jedi::Jedi(std::string name)
-{
-    this->setDefaultStats(name);
-}
-
-starwars::Jedi::~Jedi()
-{}
-
 void starwars::Jedi::setDefaultStats(std::string name)
 {
     // Take default stats, adjust to fit, depending on specific character type
@@ -97,14 +86,6 @@ void starwars::Jedi::displayStats()
     std::cout << "Health: " << this->Health << "  Force Power: " << this->forcePower << " Defense: " << this->defense << std::endl;
 }
 
-starwars::Sith::Sith()
-{
-    this->setDefaultStats();
-}
-
-starwars::Sith::~Sith()
-{}
-
 void starwars::Sith::setDefaultStats()
 {
     this->Health += 20;
@@ -172,9 +153,6 @@ starwars::Game::Game(int state)
 {
     this->_state = state;
 }
-
-starwars::Game::~Game()
-{}
 
 void starwars::Game::nextState(int playerChoice, Jedi& player, Sith& enemy)
 {
