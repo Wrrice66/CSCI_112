@@ -12,7 +12,10 @@ void clearScreen()
 
 starwars::Character::Character(int helth, int skil, int pow, int def)
 {
-
+    this->Health = helth;
+    this->lightsaberSkill = skil;
+    this->forcePower = pow;
+    this->Defense = def;
 }
 
 starwars::Jedi::Jedi(std::string name)
@@ -101,6 +104,7 @@ starwars::Sith::~Sith()
 
 void starwars::Sith::setDefaultStats()
 {
+    this->Health += 20;
     this->lightsaberSkill += 10;
     this->forcePower += 25;
     this->defense -= 10;
@@ -249,7 +253,7 @@ void starwars::Game::Lose()
 bool starwars::Game::checkWinLose(Jedi& Player, Sith& Enemy)
 {
     if (Player.getHealth() == 0)
-        return false;
+        return true; // Loss condition
     else
-        return true;
+        return false; // Win condition
 }
