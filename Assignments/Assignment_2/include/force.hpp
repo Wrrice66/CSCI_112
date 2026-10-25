@@ -42,7 +42,7 @@ namespace starwars {
             // void takeDamage(int damage);
             int getHealth();
             void displayStats();
-            Jedi(std::string jediName) : Character() { this->setDefaultStats(jediName); };
+            Jedi(std::string jediName) : Character(100, 50, 50, 20) { this->setDefaultStats(jediName); };
             ~Jedi() {};
     };
 
@@ -71,7 +71,7 @@ namespace starwars {
             void useForce(int power);
             // void takeDamage(int damage);
             int getHealth();
-            Sith() : Character() { this->setDefaultStats(); };
+            Sith() : Character(100, 50, 50, 20) { this->setDefaultStats(); };
             ~Sith() {};
     };
 
