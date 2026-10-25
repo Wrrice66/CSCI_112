@@ -18,6 +18,9 @@ starwars::Character::Character(int helth, int skil, int pow, int def)
     this->Defense = def;
 }
 
+starwars::Character::~Character()
+{}
+
 starwars::Jedi::Jedi(std::string name)
 {
     this->setDefaultStats(name);
