@@ -12,141 +12,69 @@ void clearScreen()
 
 starwars::Character::Character(int helth, int skil, int pow, int def)
 {
-    this->Health = helth;
-    this->lightsaberSkill = skil;
-    this->forcePower = pow;
-    this->Defense = def;
+    this->_health = helth;
+    this->_lightsaberSkill = skil;
+    this->_forcePower = pow;
+    this->_defense = def;
 }
+
+void starwars::Character::takeDamage(int incoming) { this->_health -= (incoming - this->_defense); }
 
 void starwars::Jedi::setDefaultStats(std::string name)
 {
     // Take default stats, adjust to fit, depending on specific character type
-    this->jediName = name;
-    this->forcePower += 25;
-    
-    /*
-    std::fstream fin;
-    fin.open("../characterData/jediStats.txt");
-    std::string helth, skil, powr, def;
-    std::getline(fin, helth);
-    std::getline(fin, skil);
-    std::getline(fin, powr);
-    std::getline(fin, def);
-    // This is a technique I found online, from the main c++ reference site and Stack Exchange, as to be expected
-    [[maybe_unused]]auto [ptr1, ec1] = std::from_chars(helth.data(), helth.data() + helth.size(), this->Health);
-    [[maybe_unused]]auto [ptr2, ec2] = std::from_chars(skil.data(), skil.data() + skil.size(), this->lightsaberSkill);
-    [[maybe_unused]]auto [ptr3, ec3] = std::from_chars(powr.data(), powr.data() + powr.size(), this->forcePower);
-    [[maybe_unused]]auto [ptr4, ec4] = std::from_chars(def.data(), def.data() + def.size(), this->defense);
-    */
-
-    /* 
-    Old Code
-
-    this->Health = std::stoi(helth);
-    this->lightsaberSkill = std::stoi(skil);
-    this->forcePower = std::stoi(powr);
-    this->defense = std::stoi(def);
-    */
+    this->_name = name;
+    this->_forcePower += 25;
 }
 
 int starwars::Jedi::Attack()
 {
-    return this->lightsaberSkill;
+    return this->_lightsaberSkill;
 }
 
-void starwars::Jedi::Block()
+void starwars::Jedi::Block() {
+    this->_defense += 20;
+    this->_lightsaberSkill -= 25; }
+
+void starwars::Jedi::unBlock() {
+    this->_defense -= 20;
+    this->_lightsaberSkill += 25; }
+
+void starwars::Jedi::useForce(int power) { this->_forcePower -= power; }
+
+void starwars::Jedi::takeDamage(int incoming) { this->_health -= (incoming - this->_defense); }
+
+int starwars::Jedi::getHealth() { return this->_health; }
+
+void starwars::Jedi::displayStats() {
+    std::cout << "Health: " << this->_health << "  Force Power: " << this->_forcePower << " Defense: " << this->_defense << std::endl; }
+
+void starwars::Sith::setDefaultStats() {
+    this->_health += 20;
+    this->_lightsaberSkill += 10;
+    this->_forcePower += 25;
+    this->_defense -= 10; }
+
+int starwars::Sith::Attack() { return this->_lightsaberSkill; }
+
+void starwars::Sith::Block() {
+    this->_defense += 20;
+    this->_lightsaberSkill -= 25; }
+
+void starwars::Sith::unBlock() {
+    this->_defense -= 20;
+    this->_lightsaberSkill += 25; }
+
+void starwars::Sith::useForce(int power) { this->_forcePower -= power; }
+
+void starwars::Sith::takeDamage(int incoming)
 {
-    this->defense += 20;
-    this->lightsaberSkill -= 25;
+    this->_health -= (incoming - this->_defense);
 }
-
-void starwars::Jedi::unBlock()
-{
-    this->defense -= 20;
-    this->lightsaberSkill += 25;
-}
-
-void starwars::Jedi::useForce(int power)
-{
-    this->forcePower -= power;
-}
-
-void starwars::Character::takeDamage(int incoming)
-{
-    this->Health -= (incoming - this->Defense);
-}
-
-int starwars::Jedi::getHealth()
-{
-    return this->Health;
-}
-
-void starwars::Jedi::displayStats()
-{
-    std::cout << "Health: " << this->Health << "  Force Power: " << this->forcePower << " Defense: " << this->defense << std::endl;
-}
-
-void starwars::Sith::setDefaultStats()
-{
-    this->Health += 20;
-    this->lightsaberSkill += 10;
-    this->forcePower += 25;
-    this->defense -= 10;
-
-    /*
-    this->sithName = "Darth *unintelligible nonsense*";
-    std::fstream fin;
-    fin.open("../characterData/sithStats.txt");
-    std::string helth, skil, powr, def;
-    std::getline(fin, helth);
-    std::getline(fin, skil);
-    std::getline(fin, powr);
-    std::getline(fin, def);
-
-    [[maybe_unused]]auto [ptr1, ec1] = std::from_chars(helth.data(), helth.data() + helth.size(), this->Health);
-    [[maybe_unused]]auto [ptr2, ec2] = std::from_chars(skil.data(), skil.data() + skil.size(), this->lightsaberSkill);
-    [[maybe_unused]]auto [ptr3, ec3] = std::from_chars(powr.data(), powr.data() + powr.size(), this->forcePower);
-    [[maybe_unused]]auto [ptr4, ec4] = std::from_chars(def.data(), def.data() + def.size(), this->defense);
-    */
-
-    /*
-    this->Health = std::stoi(helth);
-    this->lightsaberSkill = std::stoi(skil);
-    this->forcePower = std::stoi(powr);
-    this->defense = std::stoi(def);
-    */
-}
-
-int starwars::Sith::Attack()
-{
-    return this->lightsaberSkill;
-}
-
-void starwars::Sith::Block()
-{
-    this->defense += 20;
-    this->lightsaberSkill -= 25;
-}
-
-void starwars::Sith::unBlock()
-{
-    this->defense -= 20;
-    this->lightsaberSkill += 25;
-}
-
-void starwars::Sith::useForce(int power) // Potentially a kind of power that lasts forever and is ongoing?
-{
-    this->forcePower -= power;
-}
-
-// void starwars::Sith::takeDamage(int incoming)
-// {
-//     this->Health -= (incoming - this->defense);
-// }
 
 int starwars::Sith::getHealth()
 {
-    return this->Health;
+    return this->_health;
 }
 
 starwars::Game::Game(int state)
