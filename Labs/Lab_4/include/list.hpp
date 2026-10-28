@@ -36,12 +36,20 @@ class List
 template <class T1>
 List<T1>::List()
 {
+    _head = nullptr;
+    _tail = nullptr;
+    listSize = 0;
 }
 
 // iteratively delete the list starting at _head
 template <class T1>
 List<T1>::~List()
 {
+    while(_head != nullptr) {
+        Node<T1> *_prevNode = _head;
+        _head = _head->getNext();
+        delete _prevNode;
+    }
 }
 
 // return true if the list is empty, false otherwise.
@@ -49,12 +57,25 @@ List<T1>::~List()
 template <class T1>
 bool List<T1>::empty()
 {
+    if (_head == nullptr && _tail == nullptr) return true;
+    return false;
 }
 
 // return number of elements in list
 template <class T1>
 size_t List<T1>::size()
 {
+    if (_head == nullptr)
+        return 0;
+    else {
+        int currSize = 1;
+        Node<T1> *_currNode = _head;
+        while (_currNode->getNext() != nullptr){
+            _currNode = _currNode->getNext();
+            currSize += 1;
+        }
+        return currSize;
+    }
 }
 
 // add an element to the beginning of the list, updating _head
@@ -101,10 +122,25 @@ T1 List<T1>::pop_back()
 template <class T1>
 ostream &operator<<(ostream &os, const List<T1> &list)
 {
+    Node<T1> *_currNode = list._head;
+    while (_currNode != nullptr) {
+        cout << _currNode->getData() << " ";
+        _currNode = _currNode->getNext();
+    }
+    return os;
 }
 
 // should iterate through each list to check that they are exactly the same
 template <class T1>
 bool List<T1>::operator==(const List<T1>& rhs)
 {
+    Node<T1> *_1currNode = this->_head;
+    Node<T1> *_2currNode = rhs._head;
+    if (_1currNode == nullptr && _2currNode == nullptr) return true;
+    else if (_1currNode == nullptr || _2currNode == nullptr) return false;
+    else {
+        while (_1currNode != nullptr) {
+
+        }
+    }
 }
