@@ -50,11 +50,11 @@ void test()
     for(size_t i = 0; i < listSize; i++)
     {
         cout << "DEBUG: Pushing element onto back of list" << endl;
-        testList1.push_back(i*42); // Issue is here
-        cout << "DEBUG: Asserting correct list size" << endl; // Not here either
+        testList1.push_back(i*42);
+        cout << "DEBUG: Asserting correct list size" << endl;
         assert(testList1.size() == i + 1);
     }
-    cout << "DEBUG: List 1 filled" << endl; // Never made it here
+    cout << "DEBUG: List 1 filled" << endl;
     
     for(size_t i = 0; i < listSize; i++)
     {

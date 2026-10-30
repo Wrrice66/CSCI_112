@@ -65,15 +65,19 @@ bool List<T1>::empty()
 template <class T1>
 size_t List<T1>::size()
 {
+    cout << "DEBUG: Checking size of list" << endl;
     if (_head == nullptr)
         return 0;
     else {
+        cout << "DEBUG: List not empty, checking actual size" << endl;
         int currSize = 1;
         Node<T1> *_currNode = _head;
+        cout << "DEBUG: currSize: " << currSize << endl;
         while (_currNode->getNext() != nullptr){
             _currNode = _currNode->getNext();
             currSize += 1;
         }
+        cout << "DEBUG: currSize: " << currSize << endl;
         return currSize;
     }
 }
@@ -88,6 +92,11 @@ void List<T1>::push_front(T1 data)
     newNode->setNext(_head);
     newNode->setPrev(nullptr);
     _head = newNode;
+    if (this->empty()) {
+        _tail = newNode;
+        return;
+    }
+    else return;
 }
 
 // return the first element in the list.
@@ -131,6 +140,11 @@ void List<T1>::push_back(T1 data)
     newNode->setNext(nullptr);
     newNode->setPrev(_tail);
     _tail = newNode;
+    if (this->empty()) {
+        _head = newNode;
+        return;
+    }
+    else return;
 }
 
 // return the last element in the list.
