@@ -49,7 +49,7 @@ void test()
     cout << "DEBUG: Lists created" << endl;
     for(size_t i = 0; i < listSize; i++)
     {
-        cout << "DEBUG: Pushing element onto back of list" << endl;
+        cout << "DEBUG: Pushing element onto back of test list" << endl;
         testList1.push_back(i*42);
         cout << "DEBUG: Asserting correct list size" << endl;
         assert(testList1.size() == i + 1);

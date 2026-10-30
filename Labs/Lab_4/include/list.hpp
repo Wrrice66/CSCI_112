@@ -70,15 +70,19 @@ size_t List<T1>::size()
         return 0;
     else {
         cout << "DEBUG: List not empty, checking actual size" << endl;
-        int currSize = 1;
         Node<T1> *_currNode = _head;
-        cout << "DEBUG: currSize: " << currSize << endl;
-        while (_currNode->getNext() != nullptr){
-            _currNode = _currNode->getNext();
-            currSize += 1;
-        }
+        cout << "DEBUG: _currNode = " << _currNode << endl;
+        cout << "DEBUG: _currNode->getNext() = " << _currNode->getNext() << endl;
+        if (_currNode->getNext() == nullptr) return 1;
+        else {
+            int currSize = 1;
+            while (_currNode->getNext() != nullptr) {
+                _currNode = _currNode->getNext();
+                currSize += 1;
+            }
         cout << "DEBUG: currSize: " << currSize << endl;
         return currSize;
+        }
     }
 }
 
@@ -92,7 +96,7 @@ void List<T1>::push_front(T1 data)
     newNode->setNext(_head);
     newNode->setPrev(nullptr);
     _head = newNode;
-    if (this->empty()) {
+    if (newNode->getNext() == nullptr) {
         _tail = newNode;
         return;
     }
@@ -140,8 +144,10 @@ void List<T1>::push_back(T1 data)
     newNode->setNext(nullptr);
     newNode->setPrev(_tail);
     _tail = newNode;
-    if (this->empty()) {
+    cout << "DEBUG: newNode->getPrev() = " << newNode->getPrev() << endl;
+    if (newNode->getPrev() == nullptr) {
         _head = newNode;
+        cout << "DEBUG: _head = " << _head << endl;
         return;
     }
     else return;
