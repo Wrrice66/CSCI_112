@@ -82,7 +82,7 @@ size_t List<T1>::size()
 template <class T1>
 void List<T1>::push_front(T1 data)
 {
-    static Node<T1> *newNode;
+    Node<T1> *newNode = new Node<T1>*;
     if (this->empty()) {
         newNode->setData(data);
         newNode->setNext(_head);
@@ -131,7 +131,7 @@ T1 List<T1>::pop_front()
 template <class T1>
 void List<T1>::push_back(T1 data)
 {
-    static Node<T1> *newNode;
+    Node<T1> *newNode = new Node<T1>*;
     newNode->setData(data);
     newNode->setNext(nullptr);
     if (this->empty()) {
