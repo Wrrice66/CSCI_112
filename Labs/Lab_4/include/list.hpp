@@ -86,13 +86,18 @@ void List<T1>::push_front(T1 data)
     cout << "DEBUG: New node created" << endl;
     newNode->setData(data);
     newNode->setNext(_head);
-    _head = newNode;
+    newNode->setPrev(nullptr);
     if (this->empty()) {
         cout << "DEBUG: Entered if statement" << endl;
-        _tail = newNode; // Because if there's only one element, _head and _tail would be the same
+        _head = newNode;
+        _tail = newNode;
         return;
     }
-    else return;
+    else {
+        _head = newNode;
+        return;
+    }
+
 }
 
 // return the first element in the list.
@@ -134,15 +139,16 @@ void List<T1>::push_back(T1 data)
     cout << "DEBUG: New node created" << endl;
     newNode->setData(data);
     newNode->setNext(nullptr);
+    newNode->setPrev(_tail);
     if (this->empty()) {
         cout << "DEBUG: Entered if statement" << endl;
-        newNode->setPrev(this->_tail);
-        this->_tail = newNode;
-        this->_head = newNode; // Same reason as above
+        _tail = newNode;
+        _head = newNode;
+        return;
     }
     else {
-        newNode->setPrev(this->_tail);
-        this->_tail = newNode;
+        _tail = newNode;
+        return;
     }
 }
 
