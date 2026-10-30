@@ -95,6 +95,7 @@ void List<T1>::push_front(T1 data)
     newNode->setData(data);
     newNode->setNext(_head);
     newNode->setPrev(nullptr);
+    _head->setPrev(newNode);
     _head = newNode;
     if (newNode->getNext() == nullptr) {
         _tail = newNode;
@@ -143,16 +144,20 @@ void List<T1>::push_back(T1 data)
     newNode->setData(data);
     newNode->setNext(nullptr);
     newNode->setPrev(_tail);
-    _tail = newNode;
     cout << "DEBUG: newNode->getPrev() = " << newNode->getPrev() << endl;
     if (newNode->getPrev() == nullptr) {
+        _tail->setNext(newNode);
+        _tail = newNode;
         _head = newNode;
         cout << "DEBUG: _head = " << _head << endl;
         return;
     }
-    else return;
+    else { 
+        _tail->setNext(newNode);
+        _tail = newNode;
+        return;
+    }
 }
-
 // return the last element in the list.
 // if the list is empty, print that out and return 0
 template <class T1>
