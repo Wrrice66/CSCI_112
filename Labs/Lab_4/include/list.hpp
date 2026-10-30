@@ -82,6 +82,10 @@ size_t List<T1>::size()
 template <class T1>
 void List<T1>::push_front(T1 data)
 {
+    static Node<T1> *newNode;
+    newNode->setData(data);
+    newNode->setNext(_head);
+    _head = newNode;
 }
 
 // return the first element in the list.
@@ -89,6 +93,12 @@ void List<T1>::push_front(T1 data)
 template <class T1>
 T1 List<T1>::front()
 {
+    if (this->empty()) {
+        cout << "List is empty." << endl;
+        return 0;
+    }
+    else
+        return _head->getData();
 }
 
 // remove the first element from the list and return its data
@@ -96,12 +106,27 @@ T1 List<T1>::front()
 template <class T1>
 T1 List<T1>::pop_front()
 {
+    if (this->empty()) {
+        cout << "List is empty." << endl;
+        return 0;
+    }
+    else {
+        T1 toReturn = _head->getData();
+        Node<T1> *toBeDeleted = _head;
+        _head = _head->getNext();
+        delete toBeDeleted;
+        return toReturn;
+    }
 }
 
 // add an element to the end of hte list, updating _tail
 template <class T1>
 void List<T1>::push_back(T1 data)
 {
+    static Node<T1> *newNode;
+    newNode->setData(data);
+    newNode->setPrev(_tail);
+    _tail = newNode;
 }
 
 // return the last element in the list.
@@ -109,6 +134,12 @@ void List<T1>::push_back(T1 data)
 template <class T1>
 T1 List<T1>::back()
 {
+    if (this->empty()) {
+        cout << "List is empty." << endl;
+        return 0;
+    }
+    else
+        return _tail->getData();
 }
 
 // remove the last element from the list and return its data
@@ -116,6 +147,17 @@ T1 List<T1>::back()
 template <class T1>
 T1 List<T1>::pop_back()
 {
+    if (this->empty()) {
+        cout << "List is empty." << endl;
+        return 0;
+    }
+    else {
+        T1 toReturn = _tail->getData();
+        Node<T1> *toBeDeleted = _tail;
+        _tail = _tail->getPrev();
+        delete toBeDeleted;
+        return toReturn;
+    }
 }
 
 // overloading <<, should return a space separated stream of all of the elements
@@ -140,7 +182,13 @@ bool List<T1>::operator==(const List<T1>& rhs)
     else if (_1currNode == nullptr || _2currNode == nullptr) return false;
     else {
         while (_1currNode != nullptr) {
-
+            if (_1currNode->getData() == _2currNode->getData()) {
+                _1currNode = _1currNode->getNext();
+                _2currNode = _2currNode->getNext();
+                continue;
+            }
+            else return false;
         }
+        return true;
     }
 }
