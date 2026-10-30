@@ -83,7 +83,9 @@ template <class T1>
 void List<T1>::push_front(T1 data)
 {
     Node<T1> *newNode = new Node<T1>*;
+    cout << "DEBUG: New node created" << endl;
     if (this->empty()) {
+        cout << "DEBUG: Entered if statement" << endl;
         newNode->setData(data);
         newNode->setNext(_head);
         _head = newNode;
