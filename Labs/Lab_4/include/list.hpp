@@ -83,9 +83,17 @@ template <class T1>
 void List<T1>::push_front(T1 data)
 {
     static Node<T1> *newNode;
-    newNode->setData(data);
-    newNode->setNext(_head);
-    _head = newNode;
+    if (this->empty()) {
+        newNode->setData(data);
+        newNode->setNext(_head);
+        _head = newNode;
+        _tail = newNode; // Because if there's only one element, _head and _tail would be the same
+    }
+    else {
+        newNode->setData(data);
+        newNode->setNext(_head);
+        _head = newNode;
+    }
 }
 
 // return the first element in the list.
@@ -124,9 +132,17 @@ template <class T1>
 void List<T1>::push_back(T1 data)
 {
     static Node<T1> *newNode;
-    newNode->setData(data);
-    newNode->setPrev(_tail);
-    _tail = newNode;
+    if (this->empty()) {
+        newNode->setData(data);
+        newNode->setNext(_tail);
+        _tail = newNode;
+        _head = newNode; // Same reason as above
+    }
+    else {
+        newNode->setData(data);
+        newNode->setPrev(_tail);
+        _tail = newNode;
+    }
 }
 
 // return the last element in the list.
