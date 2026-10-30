@@ -82,20 +82,17 @@ size_t List<T1>::size()
 template <class T1>
 void List<T1>::push_front(T1 data)
 {
-    Node<T1> *newNode = new Node<T1>*;
+    Node<T1> *newNode = new Node<T1>;
     cout << "DEBUG: New node created" << endl;
+    newNode->setData(data);
+    newNode->setNext(_head);
+    _head = newNode;
     if (this->empty()) {
         cout << "DEBUG: Entered if statement" << endl;
-        newNode->setData(data);
-        newNode->setNext(_head);
-        _head = newNode;
         _tail = newNode; // Because if there's only one element, _head and _tail would be the same
+        return;
     }
-    else {
-        newNode->setData(data);
-        newNode->setNext(_head);
-        _head = newNode;
-    }
+    else return;
 }
 
 // return the first element in the list.
@@ -133,10 +130,12 @@ T1 List<T1>::pop_front()
 template <class T1>
 void List<T1>::push_back(T1 data)
 {
-    Node<T1> *newNode = new Node<T1>*;
+    Node<T1> *newNode = new Node<T1>;
+    cout << "DEBUG: New node created" << endl;
     newNode->setData(data);
     newNode->setNext(nullptr);
     if (this->empty()) {
+        cout << "DEBUG: Entered if statement" << endl;
         newNode->setPrev(this->_tail);
         this->_tail = newNode;
         this->_head = newNode; // Same reason as above
