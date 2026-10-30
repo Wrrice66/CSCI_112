@@ -10,6 +10,7 @@ int main(int argc, char* argv[])
 {
     if(argc >= 2 && (string)argv[1] == "test")
     {
+        cout << "DEBUG: Beginning test" << endl;
         test();
         return 0;
     }
@@ -45,11 +46,15 @@ void test()
     List<int> testList1;
     List<int> testList2;
     size_t listSize = 10;
+    cout << "DEBUG: Lists created" << endl;
     for(size_t i = 0; i < listSize; i++)
     {
-        testList1.push_back(i*42);
+        cout << "DEBUG: Pushing element onto back of list" << endl;
+        testList1.push_back(i*42); // Issue is here
+        cout << "DEBUG: Asserting correct list size" << endl; // Not here either
         assert(testList1.size() == i + 1);
     }
+    cout << "DEBUG: List 1 filled" << endl; // Never made it here
     
     for(size_t i = 0; i < listSize; i++)
     {

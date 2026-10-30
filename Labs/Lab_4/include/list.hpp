@@ -132,16 +132,16 @@ template <class T1>
 void List<T1>::push_back(T1 data)
 {
     static Node<T1> *newNode;
+    newNode->setData(data);
+    newNode->setNext(nullptr);
     if (this->empty()) {
-        newNode->setData(data);
-        newNode->setNext(_tail);
-        _tail = newNode;
-        _head = newNode; // Same reason as above
+        newNode->setPrev(this->_tail);
+        this->_tail = newNode;
+        this->_head = newNode; // Same reason as above
     }
     else {
-        newNode->setData(data);
-        newNode->setPrev(_tail);
-        _tail = newNode;
+        newNode->setPrev(this->_tail);
+        this->_tail = newNode;
     }
 }
 
