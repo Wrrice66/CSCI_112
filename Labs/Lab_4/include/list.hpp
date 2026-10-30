@@ -87,17 +87,7 @@ void List<T1>::push_front(T1 data)
     newNode->setData(data);
     newNode->setNext(_head);
     newNode->setPrev(nullptr);
-    if (this->empty()) {
-        cout << "DEBUG: Entered if statement" << endl;
-        _head = newNode;
-        _tail = newNode;
-        return;
-    }
-    else {
-        _head = newNode;
-        return;
-    }
-
+    _head = newNode;
 }
 
 // return the first element in the list.
@@ -140,16 +130,7 @@ void List<T1>::push_back(T1 data)
     newNode->setData(data);
     newNode->setNext(nullptr);
     newNode->setPrev(_tail);
-    if (this->empty()) {
-        cout << "DEBUG: Entered if statement" << endl;
-        _tail = newNode;
-        _head = newNode;
-        return;
-    }
-    else {
-        _tail = newNode;
-        return;
-    }
+    _tail = newNode;
 }
 
 // return the last element in the list.
