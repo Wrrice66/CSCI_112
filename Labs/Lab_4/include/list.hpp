@@ -71,6 +71,7 @@ size_t List<T1>::size()
     else {
         cout << "DEBUG: List not empty, checking actual size" << endl;
         Node<T1> *_currNode = _head;
+        cout << "DEBUG: _head = " << _head << endl;
         cout << "DEBUG: _currNode = " << _currNode << endl;
         cout << "DEBUG: _currNode->getNext() = " << _currNode->getNext() << endl;
         if (_currNode->getNext() == nullptr) return 1;
@@ -91,7 +92,7 @@ template <class T1>
 void List<T1>::push_front(T1 data)
 {
     Node<T1> *newNode = new Node<T1>;
-    cout << "DEBUG: New node created" << endl;
+    // cout << "DEBUG: New node created" << endl;
     newNode->setData(data);
     newNode->setNext(_head);
     newNode->setPrev(nullptr);
@@ -113,8 +114,10 @@ T1 List<T1>::front()
         cout << "List is empty." << endl;
         return 0;
     }
-    else
+    else {
+        cout << "DEBUG: List 1 _head->getNext()->getData() = " << _head->getNext()->getData() << endl;
         return _head->getData();
+    }
 }
 
 // remove the first element from the list and return its data
@@ -127,9 +130,13 @@ T1 List<T1>::pop_front()
         return 0;
     }
     else {
+        cout << "DEBUG: Removing first node" << endl;
         T1 toReturn = _head->getData();
         Node<T1> *toBeDeleted = _head;
+        cout << "DEBUG: _head = " << _head << endl;
+        cout << "DEBUG: toBeDeleted = " << toBeDeleted << endl;
         _head = _head->getNext();
+        cout << "DEBUG: _head = " << _head << endl;
         delete toBeDeleted;
         return toReturn;
     }
@@ -140,16 +147,19 @@ template <class T1>
 void List<T1>::push_back(T1 data)
 {
     Node<T1> *newNode = new Node<T1>;
-    cout << "DEBUG: New node created" << endl;
+    // cout << "DEBUG: New node created" << endl;
     newNode->setData(data);
     newNode->setNext(nullptr);
     newNode->setPrev(_tail);
-    cout << "DEBUG: newNode->getPrev() = " << newNode->getPrev() << endl;
+    // cout << "DEBUG: newNode->getPrev() = " << newNode->getPrev() << endl;
     if (newNode->getPrev() == nullptr) {
-        _tail->setNext(newNode);
+        // cout << "DEBUG: Empty list, updating both _tail and _head" << endl;
+        // cout << "DEBUG: _tail->getNext() = " << _tail->getNext() << endl;
+        // cout << "DEBUG: _tail = " << _tail << endl;
+        // _tail->setNext(newNode);
         _tail = newNode;
         _head = newNode;
-        cout << "DEBUG: _head = " << _head << endl;
+        // cout << "DEBUG: _head = " << _head << endl;
         return;
     }
     else { 

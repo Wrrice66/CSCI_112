@@ -46,21 +46,22 @@ void test()
     List<int> testList1;
     List<int> testList2;
     size_t listSize = 10;
-    cout << "DEBUG: Lists created" << endl;
+    // cout << "DEBUG: Lists created" << endl;
     for(size_t i = 0; i < listSize; i++)
     {
-        cout << "DEBUG: Pushing element onto back of test list" << endl;
-        testList1.push_back(i*42);
-        cout << "DEBUG: Asserting correct list size" << endl;
+        // cout << "DEBUG: Pushing element onto back of test list" << endl;
+        testList1.push_back(i*42); // Somehow, data in second node is 0 instead of 84
+        // cout << "DEBUG: Asserting correct list size" << endl;
         assert(testList1.size() == i + 1);
     }
-    cout << "DEBUG: List 1 filled" << endl;
+    cout << "DEBUG: List 1 complete" << endl;
     
     for(size_t i = 0; i < listSize; i++)
     {
         testList2.push_back(i*42);
     }
 
+    cout << "DEBUG: List 2 made" << endl;
     assert(testList1.empty() == false);
     assert(testList1.size() == 10);
 
@@ -68,8 +69,12 @@ void test()
     assert((size_t)testList1.front() == 42);
     assert((size_t)testList1.back() == 378);
     assert(testList1.size() == 11);
+    cout << "DEBUG: List 1 front() = " << (size_t)testList1.front() << endl;
     assert((size_t)testList1.pop_front() == 42);
+    cout << "DEBUG: List 1 front() = " << (size_t)testList1.front() << endl;
+    // cout << "DEBUG: List 1 back() = " << (size_t)testList1.back() << endl;
     assert((size_t)testList1.pop_back() == 378);
+    // cout << "DEBUG: List 1 back() = " << (size_t)testList1.back() << endl;
     assert(testList1.size() == 9);
     testList1.push_back(378);
     assert(testList1 == testList2);
