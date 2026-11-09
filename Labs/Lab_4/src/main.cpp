@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 {
     if(argc >= 2 && (string)argv[1] == "test")
     {
-        cout << "DEBUG: Beginning test" << endl;
+        // cout << "DEBUG: Beginning test" << endl;
         test();
         return 0;
     }
@@ -54,7 +54,7 @@ void test()
         // cout << "DEBUG: Asserting correct list size" << endl;
         assert(testList1.size() == i + 1);
     }
-    cout << "DEBUG: List 1 complete" << endl;
+    // cout << "DEBUG: List 1 complete" << endl;
     
     for(size_t i = 0; i < listSize; i++)
     {
@@ -82,13 +82,13 @@ void test()
     testList1.push_back(378);
     assert(testList1 == testList2);
 
-    cout << "DEBUG: List 1 = " << testList1 << endl;
+    // cout << "DEBUG: List 1 = " << testList1 << endl;
     for(size_t i = 0; i < listSize; i++)
     {
         assert((size_t)testList1.pop_front() == i*42);
         assert(testList1.size() == listSize - i - 1);
     }
-    cout << "DEBUG: List 1 = " << testList1 << endl;
+    // cout << "DEBUG: List 1 = " << testList1 << endl;
     assert(testList1.empty() == true);
     assert(!(testList1 == testList2));
 

@@ -57,7 +57,7 @@ List<T1>::~List()
 template <class T1>
 bool List<T1>::empty()
 {
-    cout << "DEBUG: _head and _tail = " << _head << " " << _tail << endl;
+    // cout << "DEBUG: _head and _tail = " << _head << " " << _tail << endl;
     if (_head == nullptr && _tail == nullptr) return true;
     return false;
 }
@@ -66,7 +66,7 @@ bool List<T1>::empty()
 template <class T1>
 size_t List<T1>::size()
 {
-    cout << "DEBUG: Checking size of list" << endl;
+    // cout << "DEBUG: Checking size of list" << endl;
     if (_head == nullptr)
         return 0;
     else {
@@ -82,7 +82,7 @@ size_t List<T1>::size()
                 _currNode = _currNode->getNext();
                 currSize += 1;
             }
-        cout << "DEBUG: currSize: " << currSize << endl;
+        // cout << "DEBUG: currSize: " << currSize << endl;
         return currSize;
         }
     }
