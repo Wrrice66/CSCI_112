@@ -61,7 +61,7 @@ void test()
         testList2.push_back(i*42);
     }
 
-    cout << "DEBUG: List 2 made" << endl;
+    // cout << "DEBUG: List 2 made" << endl;
     assert(testList1.empty() == false);
     assert(testList1.size() == 10);
 
@@ -69,21 +69,26 @@ void test()
     assert((size_t)testList1.front() == 42);
     assert((size_t)testList1.back() == 378);
     assert(testList1.size() == 11);
-    cout << "DEBUG: List 1 front() = " << (size_t)testList1.front() << endl;
+    // cout << "DEBUG: List 1 = " << testList1 << endl;
+    // cout << "DEBUG: List 1 front() = " << (size_t)testList1.front() << endl;
     assert((size_t)testList1.pop_front() == 42);
-    cout << "DEBUG: List 1 front() = " << (size_t)testList1.front() << endl;
+    // cout << "DEBUG: List 1 = " << testList1 << endl;
+    // cout << "DEBUG: List 1 front() = " << (size_t)testList1.front() << endl;
     // cout << "DEBUG: List 1 back() = " << (size_t)testList1.back() << endl;
     assert((size_t)testList1.pop_back() == 378);
+    // cout << "DEBUG: List 1 = " << testList1 << endl;
     // cout << "DEBUG: List 1 back() = " << (size_t)testList1.back() << endl;
     assert(testList1.size() == 9);
     testList1.push_back(378);
     assert(testList1 == testList2);
 
+    cout << "DEBUG: List 1 = " << testList1 << endl;
     for(size_t i = 0; i < listSize; i++)
     {
         assert((size_t)testList1.pop_front() == i*42);
         assert(testList1.size() == listSize - i - 1);
     }
+    cout << "DEBUG: List 1 = " << testList1 << endl;
     assert(testList1.empty() == true);
     assert(!(testList1 == testList2));
 

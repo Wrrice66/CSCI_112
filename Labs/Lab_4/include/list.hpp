@@ -57,6 +57,7 @@ List<T1>::~List()
 template <class T1>
 bool List<T1>::empty()
 {
+    cout << "DEBUG: _head and _tail = " << _head << " " << _tail << endl;
     if (_head == nullptr && _tail == nullptr) return true;
     return false;
 }
@@ -69,11 +70,11 @@ size_t List<T1>::size()
     if (_head == nullptr)
         return 0;
     else {
-        cout << "DEBUG: List not empty, checking actual size" << endl;
+        // cout << "DEBUG: List not empty, checking actual size" << endl;
         Node<T1> *_currNode = _head;
-        cout << "DEBUG: _head = " << _head << endl;
-        cout << "DEBUG: _currNode = " << _currNode << endl;
-        cout << "DEBUG: _currNode->getNext() = " << _currNode->getNext() << endl;
+        // cout << "DEBUG: _head = " << _head << endl;
+        // cout << "DEBUG: _currNode = " << _currNode << endl;
+        // cout << "DEBUG: _currNode->getNext() = " << _currNode->getNext() << endl;
         if (_currNode->getNext() == nullptr) return 1;
         else {
             int currSize = 1;
@@ -115,7 +116,7 @@ T1 List<T1>::front()
         return 0;
     }
     else {
-        cout << "DEBUG: List 1 _head->getNext()->getData() = " << _head->getNext()->getData() << endl;
+        // cout << "DEBUG: List 1 _head->getNext()->getData() = " << _head->getNext()->getData() << endl;
         return _head->getData();
     }
 }
@@ -129,14 +130,23 @@ T1 List<T1>::pop_front()
         cout << "List is empty." << endl;
         return 0;
     }
-    else {
-        cout << "DEBUG: Removing first node" << endl;
+    else if (_head->getNext() == nullptr) {
         T1 toReturn = _head->getData();
         Node<T1> *toBeDeleted = _head;
-        cout << "DEBUG: _head = " << _head << endl;
-        cout << "DEBUG: toBeDeleted = " << toBeDeleted << endl;
         _head = _head->getNext();
-        cout << "DEBUG: _head = " << _head << endl;
+        _tail = nullptr;
+        delete toBeDeleted;
+        return toReturn;
+    }
+    else {
+        // cout << "DEBUG: Removing first node" << endl;
+        T1 toReturn = _head->getData();
+        Node<T1> *toBeDeleted = _head;
+        // cout << "DEBUG: _head = " << _head << endl;
+        // cout << "DEBUG: toBeDeleted = " << toBeDeleted << endl;
+        // cout << "DEBUG: _head->getNext() = " << _head->getNext() << endl;
+        _head = _head->getNext();
+        // cout << "DEBUG: _head = " << _head << endl;
         delete toBeDeleted;
         return toReturn;
     }
@@ -193,6 +203,7 @@ T1 List<T1>::pop_back()
     else {
         T1 toReturn = _tail->getData();
         Node<T1> *toBeDeleted = _tail;
+        _tail->getPrev()->setNext(nullptr);
         _tail = _tail->getPrev();
         delete toBeDeleted;
         return toReturn;
