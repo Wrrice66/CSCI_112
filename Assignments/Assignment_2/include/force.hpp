@@ -49,6 +49,7 @@ namespace starwars {
     class Guardian : public Jedi {
         public:
             void setDefaultStats();
+            Guardian();
     };
 
     class Consular : public Jedi {

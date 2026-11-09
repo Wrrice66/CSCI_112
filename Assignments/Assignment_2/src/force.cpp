@@ -27,6 +27,10 @@ void starwars::Jedi::setDefaultStats(std::string name)
     this->_forcePower += 25;
 }
 
+void starwars::Guardian::setDefaultStats() {
+    this->_health += 50;
+}
+
 int starwars::Jedi::Attack()
 {
     return this->_lightsaberSkill;
@@ -46,7 +50,7 @@ void starwars::Jedi::takeDamage(int incoming) { this->_health -= (incoming - thi
 
 int starwars::Jedi::getHealth() { return this->_health; }
 
-void starwars::Jedi::displayStats() {
+void starwars::Jedi::displayStats() { 
     std::cout << "Health: " << this->_health << "  Force Power: " << this->_forcePower << " Defense: " << this->_defense << std::endl; }
 
 void starwars::Sith::setDefaultStats() {
@@ -67,10 +71,7 @@ void starwars::Sith::unBlock() {
 
 void starwars::Sith::useForce(int power) { this->_forcePower -= power; }
 
-void starwars::Sith::takeDamage(int incoming)
-{
-    this->_health -= (incoming - this->_defense);
-}
+void starwars::Sith::takeDamage(int incoming) { this->_health -= (incoming - this->_defense); }
 
 int starwars::Sith::getHealth()
 {
@@ -149,17 +150,11 @@ void starwars::Game::displayChoices()
     std::cout << "4. Return to offensive combat" << std::endl;
 }
 
-void starwars::Game::Win()
-{
-    this->_state = 5;
-}
+void starwars::Game::Win() { this->_state = 5; }
 
-void starwars::Game::Lose()
-{
-    this->_state = 6;
-}
+void starwars::Game::Lose() { this->_state = 6; }
 
-bool starwars::Game::checkWinLose(Jedi& Player, Sith& Enemy)
+bool starwars::Game::checkWinLose(Jedi& Player, Sith& Enemy) 
 {
     if (Player.getHealth() == 0)
         return true; // Loss condition

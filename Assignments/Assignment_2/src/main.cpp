@@ -14,8 +14,8 @@ int main(int argc, char* argv[])
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     starwars::Jedi* Player = new starwars::Jedi(inputName);
 
-    std::cout << "DEBUG: Player health: " << Player->getHealth() << std::endl;
-    std::cout << "DEBUG: Enemy health: " << Enemy->getHealth() << std::endl;
+    // std::cout << "DEBUG: Player health: " << Player->getHealth() << std::endl;
+    // std::cout << "DEBUG: Enemy health: " << Enemy->getHealth() << std::endl;
 
     while (Player->getHealth() != 0 && Enemy->getHealth() != 0)
     {
