@@ -1,4 +1,6 @@
 #include "../include/force.hpp"
+#include <algorithm>
+#include <cctype>
 
 int main(int argc, char* argv[])
 {
@@ -12,7 +14,23 @@ int main(int argc, char* argv[])
     std::cout << "Enter the name of your Jedi: ";
     std::cin >> inputName;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    starwars::Jedi* Player = new starwars::Jedi(inputName);
+    std::cout << "Choose what kind of Jedi you want to be: " << std::endl;
+    std::cout << "Guardian(G/g): Higher health and attack" << std::endl;
+    std::cout << "Consular(C/c): Much higher Force power" << std::endl;
+    std::cin >> playerChoice;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    // Following line was obtained online for changing strings to lowercase because I have goldfish memory
+    std::transform(playerChoice.begin(), playerChoice.end(), playerChoice.begin(), [](unsigned char c) {return std::tolower(c); });
+    starwars::Guardian* Player = new starwars::Guardian(inputName);
+    // if (playerChoice == "g") {
+    //     starwars::Guardian* Player = new starwars::Guardian(inputName);
+    // }
+    // else if (playerChoice == "c") {
+    //     starwars::Consular* Player = new starwars::Consular(inputName);
+    // }
+    // else {
+    //     std::cout << "Invalid input. Please try again." << std::endl;
+    // }
 
     // std::cout << "DEBUG: Player health: " << Player->getHealth() << std::endl;
     // std::cout << "DEBUG: Enemy health: " << Enemy->getHealth() << std::endl;

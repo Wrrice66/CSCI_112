@@ -42,6 +42,7 @@ namespace starwars {
             void takeDamage(int damage);
             int getHealth();
             void displayStats();
+            Jedi();
             Jedi(std::string jediName) : Character(100, 50, 50, 20) { this->setDefaultStats(jediName); }
             ~Jedi() {};
     };
