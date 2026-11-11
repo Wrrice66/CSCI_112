@@ -29,6 +29,11 @@ void starwars::Jedi::setDefaultStats(std::string name)
 
 void starwars::Guardian::setDefaultStats() {
     this->_health += 50;
+    this->_lightsaberSkill += 20;
+}
+
+void starwars::Consular::setDefaultStats() {
+    this->_forcePower += 45; // Default is 50, Jedi get +25, +45 to get 120
 }
 
 int starwars::Jedi::Attack()
@@ -58,6 +63,16 @@ void starwars::Sith::setDefaultStats() {
     this->_lightsaberSkill += 10;
     this->_forcePower += 25;
     this->_defense -= 10; }
+
+void starwars::Acolyte::setDefaultStats() {
+    this->_health -= 20;
+    this->_lightsaberSkill -= 10;
+}
+
+void starwars::Darth::setDefaultStats() {
+    this->_health += 80;
+    this->_lightsaberSkill += 40; // Again, accounting for changes made in Sith constructor
+}
 
 int starwars::Sith::Attack() { return this->_lightsaberSkill; }
 
