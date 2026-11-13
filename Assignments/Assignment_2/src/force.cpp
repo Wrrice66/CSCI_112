@@ -1,4 +1,5 @@
 #include "../include/force.hpp"
+#include <ios>
 
 void clearScreen()
 {
@@ -130,15 +131,19 @@ void starwars::Game::nextState(int playerChoice, Jedi& player, Sith& enemy)
 
 void starwars::Game::displayCurrState()
 {
+    std::cout << "DEBUG: Displaying current state" << std::endl;
     std::fstream fin;
     std::string currEvent = "../eventData/event" + std::to_string(this->_state) + ".txt";
-    fin.open(currEvent);
+    std::cout << "DEBUG: currEvent = " << currEvent << std::endl;
+    fin.open(currEvent); // Issue is here, file isn't being opened properly
+    std::cout << std::boolalpha << "DEBUG: Checking if file opened correctly: " << fin.is_open() << std::endl;
     char line[1000];
     while(!EOF)
     {
         fin.getline(line, 1000000);
         std::cout << line << std::endl;
     }
+    std::cout << std::endl;
     fin.close();
 }
 
