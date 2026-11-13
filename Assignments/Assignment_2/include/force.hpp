@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <charconv>
+#include <ctime>
 
 void clearScreen();
 

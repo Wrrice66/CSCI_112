@@ -1,6 +1,8 @@
 #include "../include/force.hpp"
 #include <algorithm>
 #include <cctype>
+#include <cstdlib>
+#include <ctime>
 
 int main(int argc, char* argv[])
 {
@@ -37,6 +39,17 @@ int main(int argc, char* argv[])
             std::cout << "Invalid input. Please try again." << std::endl;
             continue;
         }
+    }
+
+    std::srand(std::time(nullptr));
+    int enemyType = (std::rand() % 2 == 0) ? 0 : 1;
+    if (enemyType == 0) {
+        Enemy->~Sith();
+        new (Enemy) starwars::Acolyte();
+    }
+    else {
+        Enemy->~Sith();
+        new (Enemy) starwars::Darth();
     }
 
     // std::cout << "DEBUG: Player health: " << Player->getHealth() << std::endl;
