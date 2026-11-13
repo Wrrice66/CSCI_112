@@ -135,11 +135,11 @@ void starwars::Game::displayCurrState()
 {
     std::cout << "DEBUG: Displaying current state" << std::endl;
     std::string currEvent = "event" + std::to_string(this->_state) + ".txt";
-    std::cout << "DEBUG: currEvent = " << currEvent << std::endl;
-    std::cout << "DEBUG: CWD = " << std::filesystem::current_path() << std::endl;
+    // std::cout << "DEBUG: currEvent = " << currEvent << std::endl;
+    // std::cout << "DEBUG: CWD = " << std::filesystem::current_path() << std::endl;
     std::ifstream fin(currEvent);
-    std::cout << std::boolalpha << "DEBUG: Checking if file opened correctly: " << fin.is_open() << std::endl;
-    std::cout << std::strerror(errno);
+    // std::cout << std::boolalpha << "DEBUG: Checking if file opened correctly: " << fin.is_open() << std::endl;
+    // std::cout << std::strerror(errno);
     char line[1000];
     while(!EOF)
     {

@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <charconv>
+#include <ctime>
 
 void clearScreen();
 
@@ -23,7 +24,15 @@ namespace starwars {
             virtual void takeDamage(int damage);
             Character(int = 100, int = 50, int = 50, int = 20);
             ~Character() {};
+            Character operator+(Character const&);
+            Character operator-(Character const&);
+            friend std::ostream& operator<<(std::ostream&, Character const&);
+            bool operator==(Character const&);
+            bool operator!=(Character const&);
+            bool operator<(Character const&);
+            bool operator>(Character const&);
     };
+    std::ostream& operator<<(std::ostream&, Character const&);
 
 
     class Jedi : public Character {
@@ -42,18 +51,23 @@ namespace starwars {
             void takeDamage(int damage);
             int getHealth();
             void displayStats();
-            Jedi(std::string jediName) : Character(100, 50, 50, 20) { this->setDefaultStats(jediName); };
+            Jedi();
+            Jedi(std::string jediName) : Character(100, 50, 50, 20) { this->setDefaultStats(jediName); }
             ~Jedi() {};
     };
 
     class Guardian : public Jedi {
         public:
             void setDefaultStats();
+            Guardian(std::string jediName) : Jedi(jediName) { this->setDefaultStats(); }
+            ~Guardian();
     };
 
     class Consular : public Jedi {
         public:
             void setDefaultStats();
+            Consular(std::string jediName) : Jedi(jediName) { this->setDefaultStats(); }
+            ~Consular();
     };
 
     class Sith : public Character {
@@ -71,18 +85,22 @@ namespace starwars {
             void useForce(int power);
             void takeDamage(int damage);
             int getHealth();
-            Sith() : Character(100, 50, 50, 20) { this->setDefaultStats(); };
+            Sith() : Character(100, 50, 50, 20) { this->setDefaultStats(); }
             ~Sith() {};
     };
 
     class Acolyte : public Sith {
         public:
             void setDefaultStats();
+            Acolyte() : Sith() {}
+            ~Acolyte();
     };
 
     class Darth : public Sith {
         public:
             void setDefaultStats();
+            Darth() : Sith() {};
+            ~Darth();
     };
 
     class Game {

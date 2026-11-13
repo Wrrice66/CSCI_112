@@ -1,4 +1,7 @@
 #include "../include/force.hpp"
+#include <cstring>
+#include <filesystem>
+#include <ios>
 
 void clearScreen()
 {
@@ -27,6 +30,15 @@ void starwars::Jedi::setDefaultStats(std::string name)
     this->_forcePower += 25;
 }
 
+void starwars::Guardian::setDefaultStats() {
+    this->_health += 50;
+    this->_lightsaberSkill += 20;
+}
+
+void starwars::Consular::setDefaultStats() {
+    this->_forcePower += 45; // Default is 50, Jedi get +25, +45 to get 120
+}
+
 int starwars::Jedi::Attack()
 {
     return this->_lightsaberSkill;
@@ -46,7 +58,7 @@ void starwars::Jedi::takeDamage(int incoming) { this->_health -= (incoming - thi
 
 int starwars::Jedi::getHealth() { return this->_health; }
 
-void starwars::Jedi::displayStats() {
+void starwars::Jedi::displayStats() { 
     std::cout << "Health: " << this->_health << "  Force Power: " << this->_forcePower << " Defense: " << this->_defense << std::endl; }
 
 void starwars::Sith::setDefaultStats() {
@@ -54,6 +66,16 @@ void starwars::Sith::setDefaultStats() {
     this->_lightsaberSkill += 10;
     this->_forcePower += 25;
     this->_defense -= 10; }
+
+void starwars::Acolyte::setDefaultStats() {
+    this->_health -= 20;
+    this->_lightsaberSkill -= 10;
+}
+
+void starwars::Darth::setDefaultStats() {
+    this->_health += 80;
+    this->_lightsaberSkill += 40; // Again, accounting for changes made in Sith constructor
+}
 
 int starwars::Sith::Attack() { return this->_lightsaberSkill; }
 
@@ -67,10 +89,7 @@ void starwars::Sith::unBlock() {
 
 void starwars::Sith::useForce(int power) { this->_forcePower -= power; }
 
-void starwars::Sith::takeDamage(int incoming)
-{
-    this->_health -= (incoming - this->_defense);
-}
+void starwars::Sith::takeDamage(int incoming) { this->_health -= (incoming - this->_defense); }
 
 int starwars::Sith::getHealth()
 {
@@ -114,15 +133,20 @@ void starwars::Game::nextState(int playerChoice, Jedi& player, Sith& enemy)
 
 void starwars::Game::displayCurrState()
 {
-    std::fstream fin;
-    std::string currEvent = "../eventData/event" + std::to_string(this->_state) + ".txt";
-    fin.open(currEvent);
+    std::cout << "DEBUG: Displaying current state" << std::endl;
+    std::string currEvent = "event" + std::to_string(this->_state) + ".txt";
+    // std::cout << "DEBUG: currEvent = " << currEvent << std::endl;
+    // std::cout << "DEBUG: CWD = " << std::filesystem::current_path() << std::endl;
+    std::ifstream fin(currEvent);
+    // std::cout << std::boolalpha << "DEBUG: Checking if file opened correctly: " << fin.is_open() << std::endl;
+    // std::cout << std::strerror(errno);
     char line[1000];
     while(!EOF)
     {
         fin.getline(line, 1000000);
         std::cout << line << std::endl;
     }
+    std::cout << std::endl;
     fin.close();
 }
 
@@ -149,17 +173,11 @@ void starwars::Game::displayChoices()
     std::cout << "4. Return to offensive combat" << std::endl;
 }
 
-void starwars::Game::Win()
-{
-    this->_state = 5;
-}
+void starwars::Game::Win() { this->_state = 5; }
 
-void starwars::Game::Lose()
-{
-    this->_state = 6;
-}
+void starwars::Game::Lose() { this->_state = 6; }
 
-bool starwars::Game::checkWinLose(Jedi& Player, Sith& Enemy)
+bool starwars::Game::checkWinLose(Jedi& Player, Sith& Enemy) 
 {
     if (Player.getHealth() == 0)
         return true; // Loss condition
