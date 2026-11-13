@@ -1,4 +1,6 @@
 #include "../include/force.hpp"
+#include <cstring>
+#include <filesystem>
 #include <ios>
 
 void clearScreen()
@@ -132,11 +134,12 @@ void starwars::Game::nextState(int playerChoice, Jedi& player, Sith& enemy)
 void starwars::Game::displayCurrState()
 {
     std::cout << "DEBUG: Displaying current state" << std::endl;
-    std::fstream fin;
-    std::string currEvent = "../eventData/event" + std::to_string(this->_state) + ".txt";
+    std::string currEvent = "event" + std::to_string(this->_state) + ".txt";
     std::cout << "DEBUG: currEvent = " << currEvent << std::endl;
-    fin.open(currEvent); // Issue is here, file isn't being opened properly
+    std::cout << "DEBUG: CWD = " << std::filesystem::current_path() << std::endl;
+    std::ifstream fin(currEvent);
     std::cout << std::boolalpha << "DEBUG: Checking if file opened correctly: " << fin.is_open() << std::endl;
+    std::cout << std::strerror(errno);
     char line[1000];
     while(!EOF)
     {
