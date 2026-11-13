@@ -59,7 +59,8 @@ int main(int argc, char* argv[])
     {
         clearScreen();
         mainGame.displayCurrState();
-        Player->displayStats();
+        std::cout << "Enemy stats: \n" << Enemy << "\n" << std::endl;
+        std::cout << "Your stats: \n" << Player << std::endl;
         mainGame.displayChoices();
         std::cin >> playerChoice;
         mainGame.nextState(std::stoi(playerChoice), *Player, *Enemy);

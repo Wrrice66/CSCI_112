@@ -21,11 +21,11 @@ namespace starwars {
             int _forcePower;
             int _defense;
         public:
-            virtual void takeDamage(int damage);
+            // virtual void takeDamage(int damage);
             Character(int = 100, int = 50, int = 50, int = 20);
             ~Character() {};
-            Character operator+(Character const&);
-            Character operator-(Character const&);
+            void operator+(int);
+            void operator-(int);
             friend std::ostream& operator<<(std::ostream&, Character const&);
             bool operator==(Character const&);
             bool operator!=(Character const&);
@@ -48,9 +48,9 @@ namespace starwars {
             void Block();
             void unBlock();
             void useForce(int power);
-            void takeDamage(int damage);
+            // void takeDamage(int damage);
             int getHealth();
-            void displayStats();
+            // void displayStats();
             Jedi();
             Jedi(std::string jediName) : Character(100, 50, 50, 20) { this->setDefaultStats(jediName); }
             ~Jedi() {};
@@ -83,7 +83,7 @@ namespace starwars {
             void Block();
             void unBlock();
             void useForce(int power);
-            void takeDamage(int damage);
+            // void takeDamage(int damage);
             int getHealth();
             Sith() : Character(100, 50, 50, 20) { this->setDefaultStats(); }
             ~Sith() {};

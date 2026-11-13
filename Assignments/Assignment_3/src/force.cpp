@@ -21,7 +21,32 @@ starwars::Character::Character(int helth, int skil, int pow, int def)
     this->_defense = def;
 }
 
-void starwars::Character::takeDamage(int incoming) { this->_health -= (incoming - this->_defense); }
+// void starwars::Character::takeDamage(int incoming) { this->_health -= (incoming - this->_defense); }
+
+void starwars::Character::operator+(int healing) {this->_health += healing; }
+
+void starwars::Character::operator-(int damage) {this->_health -= (damage - this->_defense); }
+
+bool starwars::Character::operator==(Character const &chara) {
+    return (this->_health == chara._health);
+}
+
+bool starwars::Character::operator!=(Character const &chara) {
+    return (this->_health != chara._health);
+}
+
+bool starwars::Character::operator<(Character const &chara) {
+    return (this->_lightsaberSkill < chara._lightsaberSkill);
+}
+
+bool starwars::Character::operator>(Character const &chara) {
+    return (this->_lightsaberSkill > chara._lightsaberSkill);
+}
+
+std::ostream& starwars::operator<<(std::ostream& os, const Character &chara) {
+    std::cout << "Health: " << chara._health << " Attack: " << chara._lightsaberSkill << " Force Power: " << chara._forcePower << " Defense: " << chara._defense;
+    return os;
+}
 
 void starwars::Jedi::setDefaultStats(std::string name)
 {
@@ -54,12 +79,12 @@ void starwars::Jedi::unBlock() {
 
 void starwars::Jedi::useForce(int power) { this->_forcePower -= power; }
 
-void starwars::Jedi::takeDamage(int incoming) { this->_health -= (incoming - this->_defense); }
+// void starwars::Jedi::takeDamage(int incoming) { this->_health -= (incoming - this->_defense); }
 
 int starwars::Jedi::getHealth() { return this->_health; }
 
-void starwars::Jedi::displayStats() { 
-    std::cout << "Health: " << this->_health << "  Force Power: " << this->_forcePower << " Defense: " << this->_defense << std::endl; }
+// void starwars::Jedi::displayStats() { 
+//     std::cout << "Health: " << this->_health << "  Force Power: " << this->_forcePower << " Defense: " << this->_defense << std::endl; }
 
 void starwars::Sith::setDefaultStats() {
     this->_health += 20;
@@ -89,7 +114,7 @@ void starwars::Sith::unBlock() {
 
 void starwars::Sith::useForce(int power) { this->_forcePower -= power; }
 
-void starwars::Sith::takeDamage(int incoming) { this->_health -= (incoming - this->_defense); }
+// void starwars::Sith::takeDamage(int incoming) { this->_health -= (incoming - this->_defense); }
 
 int starwars::Sith::getHealth()
 {
@@ -106,9 +131,9 @@ void starwars::Game::nextState(int playerChoice, Jedi& player, Sith& enemy)
     switch (playerChoice)
     {
         case 1:
-            enemy.takeDamage(player.Attack());
+            enemy - player.Attack();
         case 2:
-            enemy.takeDamage(35); // 35 instead of 25 to account for defense, so only lightsaber damage is affected by it
+            enemy - 35; // 35 instead of 25 to account for defense, so only lightsaber damage is affected by it
             player.useForce(25);
         case 3:
             player.Block();
@@ -155,11 +180,11 @@ void starwars::Game::enemyTurn(Jedi& player, Sith& enemy)
     if (player.getHealth() >= 70)
     {
         enemy.useForce(30);
-        player.takeDamage(30);
+        player - 30;
     }
     else if (player.getHealth() >= 40 || enemy.getHealth() <= 80)
     {
-        player.takeDamage(enemy.Attack());
+        player - enemy.Attack();
     }
     else
         enemy.Block();
