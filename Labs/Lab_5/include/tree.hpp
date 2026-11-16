@@ -25,6 +25,7 @@ public:
 template <class T1>
 BST<T1>::~BST()
 {
+    destroyTree(_root);
 }
 
 // This should recursively walk the tree and delete a node if both leafs are null. You can return from a void function if you just have the return statement.
@@ -39,6 +40,7 @@ void BST<T1>::destroyTree(Node<T1>* root)
 template <class T1>
 void BST<T1>::remove(T1 data)
 {
+    removeData(_root, data);
 }
 
 // Private method to recursively walk the tree until the data is found.
