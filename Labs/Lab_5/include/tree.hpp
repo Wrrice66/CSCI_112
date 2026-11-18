@@ -33,8 +33,12 @@ BST<T1>::~BST()
 template <class T1>
 void BST<T1>::destroyTree(Node<T1>* root)
 {
-    if (root->getLeft() == nullptr && root->getRight() == nullptr) remove(root->getData());
-    return;
+    if (root == nullptr) return;
+    else if (root->getLeft() == nullptr && root->getRight() == nullptr) remove(root->getData());
+    else {
+        destroyTree(root->getLeft());
+        destroyTree(root->getRight());
+    }
 }
 
 // Public method that takes in some data and passes that into the removeData method. Don't forget to update _root as you may end up deleting the original root.
