@@ -33,6 +33,7 @@ BST<T1>::~BST()
 template <class T1>
 void BST<T1>::destroyTree(Node<T1>* root)
 {
+    if (root->getLeft() == nullptr && root->getRight() == nullptr) remove(root->getData());
     return;
 }
 
@@ -88,6 +89,7 @@ void BST<T1>::inOrderPrint(Node<T1> *root)
 template <class T1>
 void BST<T1>::inOrder()
 {
+    inOrderPrint(_root);
 }
 
 // Give some data and a node, recursively walk the tree until you get to a nullptr and store the value there.
@@ -103,4 +105,5 @@ Node<T1> *BST<T1>::insertNode(Node<T1> *root, T1 data)
 template <class T1>
 void BST<T1>::insert(T1 data)
 {
+    insertNode(_root, data);
 }
